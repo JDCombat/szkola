@@ -1,0 +1,15 @@
+p {
+font-family: Arial, Helvetica, sans-serif;
+color:green;
+font-weight:bold;
+background-color:red;
+}
+h1 {
+background-color:green;
+font-weight:bold;
+color:white;
+}
+p:hover{
+	color:purple;
+	transition: 1s;
+}
