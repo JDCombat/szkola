@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+int NWD(int x, int y);
 int main(){
     int a,b;
 
@@ -8,18 +9,22 @@ int main(){
     cout << "Wpisz druga liczbe\n";
     cin >> b;
 
-    while(a!=b){
-        if(a>b){
-            a=a-b;
-        }
-        else {
-            b=b-a;
-        }
-
-    }
-    cout << "NWD dla tych liczb to " << a;
+    
+    cout << "NWD dla tych liczb to " << NWD(a,b)<<endl;
 
 
 
 return 0;
+}
+int NWD(int x , int y){
+    while(x!=y){
+        if(x>y){
+            x=x-y;
+        }
+        else {
+            y=y-x;
+        }
+
+    }
+    return x;
 }
