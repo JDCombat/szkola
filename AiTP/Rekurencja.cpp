@@ -4,7 +4,7 @@ using namespace std;
 unsigned long long fibonacci(int x);
 long long silnia(int x);
 float NWD(int x, int y);
-int power(float x, int y);
+unsigned long power(float x, int y);
 unsigned int newton(int x, int y);
 int main(){
     float a, b;
@@ -20,7 +20,7 @@ int main(){
     cin >> a >> b;
     cout << "NWD wynosi " << NWD(a, b) << endl;
 
-    cout << "Podaj liczbe do potegowania i wykładnik" <<endl;
+    cout << "Podaj liczbe do potegowania i wykladnik" <<endl;
     cin >> a >> b;
     cout << "Potega wynosi " << power(a, b) << endl;
 
@@ -56,7 +56,7 @@ float NWD(int x, int y){
     }
 }
 
-int power(float x, int y){
+unsigned long power(float x, int y){
     if(x==0 && y==0){
         
     }
@@ -71,9 +71,11 @@ int power(float x, int y){
         return x*power(x, y-1);
 }
 
-unsigned int newton(int x, int y){
-    if(y==0 || x==0)
+unsigned int newton(int n, int k){
+    if(k>n)
+        return 0;
+        
+    if(k==0 || n==0)
         return 1;
-    else if(y>0 || y<x)
-        return silnia(x)/(silnia(y)*silnia(x-y));
+    return newton(n-1, k-1) +newton(n-1, k);
 }
