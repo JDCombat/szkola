@@ -1,0 +1,54 @@
+html{
+    font-size: 16px;
+    background-color: blueviolet;
+    background-image: linear-gradient(315deg, #1778e6, #6d1cf0);
+    color: #b2dda9;
+}
+.vw{
+    width: 20vw;
+}
+.vh{
+    font-size: 5vh;
+}
+.cm{
+    font-size: 2cm;
+}
+.rem{
+    font-size: 2rem;
+}
+
+.vmax{
+    font-size: 10vmax;
+}
+.in{
+    font-size: 1in;
+}
+.pt{
+    font-size: 10pt;
+}
+.pc{
+    font-size: 2pc;
+}
+h1, h2{
+    font-size: 1in;
+}
+div{
+    border: 1px black solid;
+    font-size: 20px;
+}
+.vmin{
+    font-size: 10vmin;
+}
+.ex{
+    font-size: 5ex;
+}
+.per{
+    font-size: 130%;
+}
+.zero{
+    font-size: 2ch;
+}
+.em{
+    font-size: 3em;
+}
+
