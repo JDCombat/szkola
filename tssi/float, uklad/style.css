@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+#pojemnik{
+    width: 800px;
+    margin: 0 auto;
+    background-color: aqua;
+    overflow: hidden;
+    text-align: center;
+    
+}
+header{
+    width: 100%;
+    margin: 0 auto;
+    background-color: blue;
+    color: aliceblue;
+}
+footer{
+    margin: 0 auto;
+    background-color: grey;
+}
+#lewo{
+    float: left;
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid black;
+}
+#prawo{
+    float: right;
+    margin: 0 auto;
+    width: 20%;
+}
