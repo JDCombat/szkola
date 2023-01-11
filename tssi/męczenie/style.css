@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    position: relative;
+    height: 200px;
+    background-color: rgb(111, 0, 255);
+}
+header h1{
+    text-align: center;
+}
+nav{
+    position: absolute;
+    bottom: 16px;
+    left: 50px;
+    min-width: 600px;
+}
+nav ul{
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav li{
+    display: inline;
+}
+nav a{
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px 10px 5px 5px;
+    
+}
+a:link{
+    color: aqua;
+    text-decoration: none;
+}
+a:hover{
+    background-color: chartreuse;
+    color: black;
+}
+header img{
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+#pojemnik{
+    height: 600px;
+    background-color: rgb(166, 100, 228);
+    position: relative;
+}
+#primo{
+    position: absolute;
+    left: 150px;
+    z-index: 1;
+}
+#drugiePrimo{
+    position: absolute;
+    right: 150px;
+}
+#pprimo{
+    position: absolute;
+    left: 150px;
+    width: 200px;
+    height: 200px;
+    background-color: grey;
+}
+#ppripo:hover{
+    z-index: 2;
+}
