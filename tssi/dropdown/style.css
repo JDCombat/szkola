@@ -1,0 +1,103 @@
+ul{
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    margin: 0 auto;
+}
+nav ul{
+    margin: 0 auto;
+    width: max-content;
+}
+nav ul ul{
+    position: absolute;
+    top: 100%;
+    display: none;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid lightgreen;
+    padding: 5px;
+    width: 100px;
+    text-align: center;
+}
+nav li{
+    display: inline;
+    width: 100px;
+}
+body{
+    background-color: black;
+    color: white;
+}
+nav ul ul a{
+    display: block;
+}
+nav ul li:hover > ul {
+    display: block;
+}
+.drugi{
+    left: 118px;
+}
+figcaption{
+    background: lightgrey;
+    position: absolute;
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    font-size: 0.75em;
+}
+figcaption:hover{
+    opacity: 75%;
+    transition: opacity 0.5s;
+}
+
+h1{
+    text-align: center;
+}
+
+nav{
+    justify-content: center;
+    margin: 0 auto;
+}
+
+header{
+    background-color: #1b1b1b;
+    padding: 20px;
+}
+main{
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    padding-top: 40px;
+}
+figcaption{
+    background: lightgrey;
+    position: absolute;
+    opacity: 0;
+    font-size: 0.75em;
+    left: 40px;
+    height: fit-content;
+    padding: 3px;
+    width: 194px;
+    top: 16%;
+}
+figcaption:hover{
+    opacity: 75%;
+    transition: opacity 0.5s;
+}
+
+figure{
+    height: 200px;
+    width: 200px;
+    position: relative;
+    display: inline-block;
+    color: black;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+.figure{
+    margin: 0 auto;
+    width: fit-content;
+}
