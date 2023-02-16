@@ -24,7 +24,7 @@ int main(){
     int n;
     cout << "Podaj liczbe" << endl;
     cin >> n;
-    int liczby[n-1];
+    int* liczby = new int[n-1];
     for(int i = 0;i<(sizeof(liczby)/4)+1;i++){
     int x = (rand()%n)+1;
     liczby[i] = x;
@@ -32,6 +32,6 @@ int main(){
 
 bubblesort(liczby, n);
 for (int i = 0; i<(sizeof(liczby)/4)+1;i++){
-    cout << liczby[i] << " "
+    cout << liczby[i] << " ";
 }
 }
