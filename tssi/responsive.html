@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #left{
+            float: left;
+            width: 20%;
+            background-color: yellow;
+        }
+        #srodek{
+            float: left;
+            width: 60%;
+            background-color: green;
+            text-align: center;
+        }
+        #right{
+            float: right;
+            width: 20%;
+            background-color: rebeccapurple;
+            text-align: right;
+        }
+        @media only screen and (max-width:800px){
+            body{
+                font-size: 3em;
+            }
+            #left, #right{
+                display: none;
+            }
+            #srodek{
+                width: 100%;
+                float: none;
+            }
+            #srodek::after{
+                content: 'Info o autorze';
+                color: red;
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="tak">
+        <div id="left">
+            Lewica
+        </div>
+        <div id="srodek">
+            Centrum
+        </div>
+        <div id="right">
+            Prawica
+        </div>
+    </div>
+</body>
+</html>
