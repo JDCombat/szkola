@@ -6,6 +6,7 @@ html{
     background-color: blueviolet;
     background-image: linear-gradient(315deg, #1778e6, #6d1cf0);
     color: #b2dda9;
+    height: 100%;
 }
 h1{
     text-align: center;
@@ -54,4 +55,42 @@ ol a{
 }
 td, tr{
     border: 1px solid black;
+}
+.before::before{
+    content: "Pseudoelement ::before";
+    color: red;
+    font-size: 2em;
+}
+.after::after{
+    content: "PSeudoelement ::after";
+    font-size: 2em;
+    color: red;
+}
+.letter::first-letter{
+    font-size: 2em;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #1b1b1b;
+}
+.line::first-line{
+    color: chartreuse;
+    font-size: 2em;
+}
+
+.hover:hover{
+    font-size: 2em;
+    transition: 2s;
+}
+.link a:link{
+    color: #1b1b1b;
+    font-size: 2em;
+}
+.active a:active{
+    color: #28a50e;
+    transition: 3s;
+}
+@media only screen and (max-width: 600px){
+    body{
+        text-align: center;
+        font-size: 0.75em;
+    }
 }
