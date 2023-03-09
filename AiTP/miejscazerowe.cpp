@@ -36,7 +36,7 @@ double bisekcja_it(double a, double b){
     return c;
 }
 
-double fals(double a, double b, double epsilon){
+double falsi(double a, double b, double epsilon){
     double c = a - f(a)*((b-a)/(f(b) - f(a)));
     while(fabs(f(c)) > epsilon){
         if (f(a)*f(c) < 0){
