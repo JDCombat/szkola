@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #zadanie{
+            background-color: greenyellow;
+            width: 180px;
+            position: relative;
+            padding: 10px;
+            padding-bottom: 30px;
+        }
+        #zadanie label{
+            display: block;
+            position: relative;
+            margin: 2px;
+        }
+        #zadanie input{
+            box-sizing: border-box;
+            position: absolute;
+            width: 100px;
+            right: 0px;
+        }
+        #zadanie input[type=submit]{
+            bottom: 5px;
+            right: 12px;
+            width: 100px;
+        }
+        #tak{
+            background-color: greenyellow;
+            width: 180px;
+            position: relative;
+            padding: 10px;
+            padding-bottom: 110px;
+        }
+        #tak label{
+            display: block;
+            position: relative;
+            margin: 2px;
+        }
+        #tak input{
+            box-sizing: border-box;
+            position: absolute;
+            width: 100px;
+            right: 0px;
+        }
+        #tak input[name=zaloguj]{
+            bottom: 5px;
+            right: 12px;
+            width: 100px;
+        }
+        #tak input[type=reset]{
+            bottom: 30px;
+            right: 12px;
+        }
+        #tak input[name=logout]{
+            bottom: 55px;
+            right: 12px;
+        }
+        #tak input[name=zmien]{
+            right: 12px;
+            bottom: 80px;
+        }
+    </style>
+</head>
+<body>
+    <form action="mailto:twojadresemail" method="post">
+
+        <textarea name="nazwa" cols="30" rows="10"></textarea>
+
+        <input type="submit" value="Prześlij">
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <form action="mailtto:adres" method="post">
+        <label>Login <input type="text" name="Login"> </label>
+        <label for="pole">Wprowadź słowo</label>
+        <input type="text" name="Pole1" id="pole">
+        <label for="hasło">Hasło</label>
+        <input type="password" name="Hasło" id="hasło">
+
+        <input type="submit" value="Upload">
+    </form>
+    <br> <br> <br>
+
+    <form action="mailto:" method="post" id="zadanie">
+        <label>login <input type="text"></label>
+        
+        <label>hasło <input type="password" name="hasł"></label>
+        
+        <input type="submit">
+    </form>
+
+<br> <br> <br>
+    <form action="mailto:" method="post" id="tak">
+        <label>login <input type="text"></label>
+        <label>hasło <input type="password" name="hasł"></label>
+
+        <input type="submit" name="zaloguj">
+        <input type="reset">
+        <input type="submit" name="zmien" value="Zmień hasło">
+        <input type="submit" value="Wyloguj" name="logout">
+        <input type="blafsdaf">
+    </form>
+</body>
+</html>
