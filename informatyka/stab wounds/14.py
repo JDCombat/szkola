@@ -1,0 +1,6 @@
+f = open("C:\git\szkola\informatyka\stab wounds\pliki\\3_liczby.txt", "r")
+print(hex(int(f.readline()))[2:] ,end=";")
+f.readline()
+print(oct(int(f.readline()))[2:] ,end=";")
+f.readline()
+print(bin(int(f.readline()))[2:])
