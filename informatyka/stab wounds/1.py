@@ -1,4 +1,4 @@
-f = open('C:\git\szkola\informatyka\stab wounds\pliki\slowa.txt', "r")
+f = open('.\szkola\informatyka\stab wounds\pliki\slowa.txt', "r")
 
 licznik = 0
 for x in f:
