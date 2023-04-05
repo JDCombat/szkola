@@ -1,7 +1,7 @@
 f = open("./szkola/informatyka/stab wounds/pliki/te_same_cyfry.txt", "r")
 lista = f.read().split("\n")
 
-repeat = 0  # liczba powtórzeń
+repeat = 0
 
 for i in range(0, len(lista)):
     litery1 = list(lista[i])
