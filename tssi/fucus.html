@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=UTF-8>
+        <style>
+            :focus{
+                border: 4px dotted pink;
+            }
+            form{
+                cursor: wait;
+            }
+            input{
+                cursor: wait;
+            }
+            button{
+                background-color: aqua;
+                border-color: blue;
+                border-radius: 15px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            button:hover{
+                background-color: red;
+                color: white;
+                transform: rotate(360deg);
+                cursor: pointer;
+                transition: all 2s;
+            }
+        </style>
+    </head>
+<body>
+<h1>The autofocus attribute</h1>
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" autofocus><br><br>
+  <input type="submit">
+  <button>Bing chilling</button>
+</form>
+<details>
+    <summary>Epcot Center</summary>
+    <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+  </details>
+  
+</body>
+</html>
