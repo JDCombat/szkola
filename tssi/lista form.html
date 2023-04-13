@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            form{
+            width: 180px;
+            position: relative;
+            background-color: aquamarine;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            padding-bottom: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>Dni tygodnia</legend>
+        <select name="dzien" size="4" multiple>
+            <option selected>-----</option>
+            <optgroup label="Dni robocze">
+                <option>Poniedziałek</option>
+                <option>Wtorek</option>
+                <option>Środa</option>
+                <option>Czwartek </option>
+                <option>Piątek</option>
+            </optgroup>
+            <optgroup label="Dni wolne">
+                <option>Sobota</option>
+                <option>Niedziela</option>
+            </optgroup>
+        </select>
+    </fieldset>
+        <input type="submit" value="Wyślij">
+    </form>
+</body>
+</html>
