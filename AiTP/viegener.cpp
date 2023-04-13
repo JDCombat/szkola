@@ -54,7 +54,7 @@ int main() {
 }
 
 string zakoduj(string txt, string klucz) {
-    string zwrot = "";
+    string zwrot;
     int x, y;
     while (klucz.size() < txt.size())klucz += klucz;
     for(int i = 0; i < txt.size(); i++){
@@ -71,7 +71,7 @@ string zakoduj(string txt, string klucz) {
     return zwrot;
 }
 string odkoduj(string txt, int dlugosc, string klucz) {
-    string zwrot = "";
+    string zwrot;
     int x,y;
     while (klucz.size() < dlugosc) klucz += klucz;
     for (int i = 0; i < txt.size(); i++){
