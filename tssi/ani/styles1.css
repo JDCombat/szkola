@@ -35,6 +35,10 @@ nav a {
 	border: 1px solid rgb(232,113,35);
 	margin-right: 5px;
 }
+nav a:hover{
+	transform: rotate(720deg);
+	transition: 2s;
+}
 header {
 	background-color:#9999ff;
 	position: relative;
@@ -52,16 +56,34 @@ header h1 {
 	
 }
 
+@keyframes animacja {
+	0%{
+		left: 120%;
+		opacity: 0;
+	}
+	30%{
+		transform: rotate(12404deg) translateY(100px)
+	}
+	50%{
+		transform: scale(20);
+	}
+	70%{
+		left: 0;
+		opacity: 1;
+	}
+	100%{
+		left: 120%;
+		opacity: 0;
+	}
+}
+
 header img {
 	position: absolute;
 	top: 0;
 	left: 0;	
 	z-index: 1;
-	transform: rotate(90deg);
-}
-header img:hover{
-	left: 300px;
-	transition: 3s;
+	animation: animacja 4s infinite;
+	animation-iteration-count: infinite;
 }
 header nav {
   position: absolute;
