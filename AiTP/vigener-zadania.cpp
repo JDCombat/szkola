@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cmath>
 using namespace std;
 
 string t[26] = {
@@ -14,7 +15,7 @@ string t[26] = {
         "hijklmnopqrstuvwxyzabcdefg",
         "ijklmnoprstuvwxyzabcdefgh",
         "jklmnopqrstuvwxyzabcdefghi",
-        "klmnopqrstuvwxyzabcdefghij ",
+        "klmnopqrstuvwxyzabcdefghij",
         "lmnopqrstuvwxyzabcdefghijk",
         "mnopqrstuvwxyzabcdefghijkl",
         "nopqrstuvwxyzabcdefghijklm",
@@ -31,45 +32,33 @@ string t[26] = {
         "yzabcdefghijklmnopqrstuvwx",
         "zabcdefghijklmnopqrstuvwxy"
 };
-
-string zakoduj(string txt,int dlugosc, string klucz);
-string odkoduj(string txt,int dlugosc, string klucz);
-int main() {
-    ifstream in;
-    in.open("text.txt");
-    string wyraz;
-    getline(in, wyraz);
-    in.close();
-    string klucz = "make";
-    string tekst = zakoduj(wyraz, 11, "make");
-    ofstream szyfr, czysty;
-    szyfr.open("szyfrogram.txt");
-    cout << tekst;
-    szyfr << tekst;
-    szyfr.close();
-    tekst = odkoduj(tekst, 11, "make");
-    czysty.open("odszyfrowane.txt");
-    cout << tekst;
-    czysty << tekst;
-}
-
-string zakoduj(string txt, int dlugosc, string klucz) {
-    string zwrot = "";
+int powt;
+string zakoduj(string txt, string klucz) {
+    string zwrot;
     int x, y;
-    while (klucz.size() < dlugosc)klucz += klucz;
-    for(int i = 0; i < dlugosc; i++){
+    int size = klucz.size();
+    while (klucz.size() < txt.size())klucz += klucz;
+    powt = floor(klucz.size() / size);
+    cout << powt;
+    for(int i = 0; i < txt.size(); i++){
         x = 0;
         while (t[x][0] != klucz[i]){
             x++;
         }
         y = 0;
-        while (txt[i] != t[0][y]){
-            y++;
+        if(txt[i] == ' ') zwrot += ' ';
+        else if(txt[i] == ',') zwrot += ',';
+        else if(txt[i] == '.') zwrot += '.';
+        else {
+            while (txt[i] != t[0][y]) {
+                y++;
+            }
+            zwrot += t[x][y];
         }
-        zwrot += t[x][y];
     }
     return zwrot;
 }
+
 string odkoduj(string txt, int dlugosc, string klucz) {
     string zwrot = "";
     int x,y;
@@ -83,6 +72,44 @@ string odkoduj(string txt, int dlugosc, string klucz) {
     }
     return zwrot;
 }
-//
-// Created by Kozub Bartosz on 13.04.2023.
-//
+void zadanie1(){
+    ifstream in;
+    in.open("dokad.txt");
+    string wyraz;
+    getline(in, wyraz);
+    in.close();
+    string tekst = zakoduj(wyraz, "LUBIMYCZYTAC");
+    ofstream szyfr;
+    szyfr.open("odpowiedz.txt");
+    szyfr << powt << " powtorzenia |";
+    szyfr << tekst;
+    tekst = odkoduj(wyraz,wyraz.size(), "LUBIMYCZYTAC");
+    szyfr << endl << endl << tekst;
+}
+
+void zadanie2(){
+    ifstream in;
+    in.open("szyfr.txt");
+    string wyraz;
+    getline(in, wyraz);
+    cout << wyraz << endl << endl;
+    string klucz;
+    getline(in, klucz);
+    in.close();
+    string tekst = odkoduj(wyraz,wyraz.size(), klucz);
+    ofstream odszyfr;
+    odszyfr.open("odszyfrowane.txt");
+    cout << tekst;
+    odszyfr << tekst;
+}
+
+int main(){
+    for(int i = 0;i<t->size();i++){
+        for(int j = 0;j<t[i].size();j++) {
+            t[i][j] = toupper(t[i][j]);
+
+        }
+    }
+    zadanie1();
+
+}
