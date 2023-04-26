@@ -10,7 +10,7 @@ ifstream f, szyfr;
 ofstream out;
 
 
-int normalizeKey(string &klucz, const string& tekst) {
+int wydluzKlucz(string &klucz, const string& tekst) {
     int itr = 1;
     string initialKey = klucz;
     while (klucz.length() <= tekst.length()) {
@@ -133,17 +133,16 @@ int main(){
 
     string key2, passphrase2;
 
-    getline(szyfr, passphrase2, '\n'); // odczytanie wiadomości do odszyfrowania
-    getline(szyfr, key2, '\n'); // odczytanie klucza
+    getline(szyfr, passphrase2, '\n'); 
+    getline(szyfr, key2, '\n'); 
+    string key3 = key2;
 
-    string key3 = key2; // zapisanie wstępnej długości klucza do późniejszego zastosowania
+    out << "Liczba powtórzeń klucza: " << wydluzKlucz(klucz, tekst) << '\n';
 
-    out << "Liczba powtórzeń klucza: " << normalizeKey(klucz, tekst) << '\n'; // dopasowanie klucza do długości tekstu
-
-    normalizeKey(key2, passphrase2); // dopasowanie klucza do długości tekstu (dla kolejnego zadania)
-    zaszyfruj(klucz, tekst, t); // szyfrowanie
-    odszyfruj(passphrase2, key2, t); // odszyfrowywanie
-    znajdzKlucz(t, passphrase2); // szacowanie długości klucza
+    wydluzKlucz(key2, passphrase2);
+    zaszyfruj(klucz, tekst, t);
+    odszyfruj(passphrase2, key2, t);
+    znajdzKlucz(t, passphrase2);
 
     out << "Rzeczywista długość klucza: " << key3.length();
 
