@@ -1,115 +1,154 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <cmath>
+#include <algorithm>
+#include <iomanip>
+
 using namespace std;
 
-string t[26] = {
-        "abcdefghijklmnopqrstuvwxyz",
-        "bcdefghijklmnopqrstuvwxyza",
-        "cdefghijklmnopqrstuvwxyzab",
-        "defghijklmnopqrstuvwxyzabc",
-        "efghijklmnopqrstuvwxyzabcd",
-        "fghijklmnopqrstuvwxyzabcde",
-        "ghijklmnopqrstuvwxyzabcdef",
-        "hijklmnopqrstuvwxyzabcdefg",
-        "ijklmnoprstuvwxyzabcdefgh",
-        "jklmnopqrstuvwxyzabcdefghi",
-        "klmnopqrstuvwxyzabcdefghij",
-        "lmnopqrstuvwxyzabcdefghijk",
-        "mnopqrstuvwxyzabcdefghijkl",
-        "nopqrstuvwxyzabcdefghijklm",
-        "opqrstuvwxyzabcdefghijklmn",
-        "pqrstuvwxyzabcdefghijklmno",
-        "qrstuvwxyzabcdefghijklmnop",
-        "rstuvwxyzabcdefghijklmnopq",
-        "stuvwxyzabcdefghijklmnopqr",
-        "tuvwxyzabcdefghijklmnopqrs ",
-        "uvwxyzabcdefghijklmnopqrst",
-        "vwxyzabcdefghijklmnopqrstu",
-        "wxyzabcdefghijklmnopqrstuv",
-        "xyzabcdefghijklmnopqrstuvw",
-        "yzabcdefghijklmnopqrstuvwx",
-        "zabcdefghijklmnopqrstuvwxy"
-};
-int powt;
-string zakoduj(string txt, string klucz) {
-    string zwrot;
-    int x, y;
-    int size = klucz.size();
-    while (klucz.size() < txt.size())klucz += klucz;
-    powt = floor(klucz.size() / size);
-    cout << powt;
-    for(int i = 0; i < txt.size(); i++){
-        x = 0;
-        while (t[x][0] != klucz[i]){
-            x++;
+ifstream f, szyfr;
+ofstream out;
+
+
+int normalizeKey(string &klucz, const string& tekst) {
+    int itr = 1;
+    string initialKey = klucz;
+    while (klucz.length() <= tekst.length()) {
+        klucz += initialKey;
+        itr++;
+    }
+    return itr;
+}
+
+
+void zaszyfruj(string klucz, string tekst, string t[]) {
+    int firstIndex, secondIndex, count = 0;
+    out << "Zaszyfrowana wiadomość: ";
+
+    for (int i = 0; i < tekst.length(); i++){
+        if (tekst[i] == '.') {
+            out << '.';
+            count++;
+            continue;
         }
-        y = 0;
-        if(txt[i] == ' ') zwrot += ' ';
-        else if(txt[i] == ',') zwrot += ',';
-        else if(txt[i] == '.') zwrot += '.';
-        else {
-            while (txt[i] != t[0][y]) {
-                y++;
+        if (tekst[i] == ',') {
+            out << ',';
+            count++;
+            continue;
+        }
+        if (tekst[i] == ' ')
+        {
+            out << ' ';
+            count++;
+            continue;
+        }
+
+        for (int j = 0; j < 26; j++){
+            if(t[0][j] == tekst[i]){
+                firstIndex = j;
             }
-            zwrot += t[x][y];
+            if (t[j][0] == klucz[i-count]){
+                secondIndex = j;
+            }
+        }
+
+        out << t[firstIndex][secondIndex];
+    }
+    out << '\n';
+}
+
+
+void odszyfruj(string tekst, string klucz, string t[]) {
+    int index, count = 0;
+    out << "Odszyfrowana wiadomość: ";
+    for (int i = 0; i < tekst.length(); i++){
+        if (tekst[i] == '.') {
+            out << '.';
+            count++;
+            continue;
+        }
+        if (tekst[i] == ',') {
+            out << ',';
+            count++;
+            continue;
+        }
+        if (tekst[i] == ' ') {
+            out << ' ';
+            count++;
+            continue;
+        }
+
+        for (int j = 0; j < 26; j++){
+            if(t[0][j] == klucz[i-count]){
+                index = j;
+                for (int k = 0; k < 26; k++) {
+                    if (t[k][index] == tekst[i]) {
+                        out << t[k][0];
+                    }
+                }
+            }
         }
     }
-    return zwrot;
+    out << '\n';
 }
 
-string odkoduj(string txt, int dlugosc, string klucz) {
-    string zwrot = "";
-    int x,y;
-    while (klucz.size() < dlugosc) klucz += klucz;
-    for (int i = 0; i < dlugosc; i++){
-        x = 0;
-        while(t[x][0] != klucz[i]) x++;
-        y = 0;
-        while(t[x][y] != txt[i]) y++;
-        zwrot += t[0][y];
+
+
+void znajdzKlucz(string t[], string tekst) {
+    int tab[26], suma = 0;
+    out << "Liczba powtórzeń poszczególnych liter: \n";
+    for (int i = 0; i < 26; i++){
+        tab[i] = count(tekst.begin(), tekst.end(), t[0][i]);
+        out << "\t" << t[0][i] << ": " << tab[i] << '\n';
+        suma += tab[i];
     }
-    return zwrot;
-}
-void zadanie1(){
-    ifstream in;
-    in.open("dokad.txt");
-    string wyraz;
-    getline(in, wyraz);
-    in.close();
-    string tekst = zakoduj(wyraz, "LUBIMYCZYTAC");
-    ofstream szyfr;
-    szyfr.open("odpowiedz.txt");
-    szyfr << powt << " powtorzenia |";
-    szyfr << tekst;
-    tekst = odkoduj(wyraz,wyraz.size(), "LUBIMYCZYTAC");
-    szyfr << endl << endl << tekst;
-}
 
-void zadanie2(){
-    ifstream in;
-    in.open("szyfr.txt");
-    string wyraz;
-    getline(in, wyraz);
-    cout << wyraz << endl << endl;
-    string klucz;
-    getline(in, klucz);
-    in.close();
-    string tekst = odkoduj(wyraz,wyraz.size(), klucz);
-    ofstream odszyfr;
-    odszyfr.open("odszyfrowane.txt");
-    cout << tekst;
-    odszyfr << tekst;
+    double fragment1 = 0;
+    for (int i : tab) {
+        fragment1 += i*(i-1);
+    }
+
+    double fragment2 = fragment1 / (suma*(suma-1));
+    double wynik = 0.0285 / (fragment2 - 0.0385);
+
+    out << "Szacowana długość klucza: " << setprecision(4) << wynik << '\n';
+    szyfr.close();
 }
 
 int main(){
-    for(int i = 0;i<t->size();i++){
-        for(int j = 0;j<t[i].size();j++) {
-            t[i][j] = toupper(t[i][j]);
+    string t[26];
+    f.open("dokad.txt");
+    szyfr.open("szyfr.txt");
+    out.open("wyniki.txt");
 
+    string tekst, klucz = "LUBIMYCZYTAC";
+    getline(f, tekst, '\n');
+
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++) {
+            int znak = (i+j)%26+65;
+            t[i] += (char)znak;
         }
     }
-    zadanie1();
 
+    string key2, passphrase2;
+
+    getline(szyfr, passphrase2, '\n'); // odczytanie wiadomości do odszyfrowania
+    getline(szyfr, key2, '\n'); // odczytanie klucza
+
+    string key3 = key2; // zapisanie wstępnej długości klucza do późniejszego zastosowania
+
+    out << "Liczba powtórzeń klucza: " << normalizeKey(klucz, tekst) << '\n'; // dopasowanie klucza do długości tekstu
+
+    normalizeKey(key2, passphrase2); // dopasowanie klucza do długości tekstu (dla kolejnego zadania)
+    zaszyfruj(klucz, tekst, t); // szyfrowanie
+    odszyfruj(passphrase2, key2, t); // odszyfrowywanie
+    znajdzKlucz(t, passphrase2); // szacowanie długości klucza
+
+    out << "Rzeczywista długość klucza: " << key3.length();
+
+    out.close();
+    szyfr.close();
+
+    return 0;
 }
