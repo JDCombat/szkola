@@ -1,7 +1,7 @@
 file = open('.\szkola\informatyka\stab wounds\pliki\zapis.txt', 'r')
 lista = file.read().split('\n')
-plac = []  # płać tym osobom
-suma = 0  # zapłacona suma
+plac = []
+suma = 0
 
 for el in lista:
     for pracownik in plac:
