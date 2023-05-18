@@ -10,6 +10,7 @@ html{
 }
 h1{
     text-align: center;
+    animation: fuu 2s infinite;
 }
 nav{
     margin: 0 auto;
@@ -39,6 +40,8 @@ a:visited{
 }
 a:hover{
     color:#28a50e;
+    transform: scale(20);
+    transform: rotate(720deg);
     transition:1s;
 }
 strong{
@@ -92,5 +95,16 @@ td, tr{
     body{
         text-align: center;
         font-size: 0.75em;
+    }
+}
+@keyframes fuu {
+    0%{
+        transform: translateX(500px);
+    }
+    30%{
+        transform: scale(2);
+    }
+    100%{
+        transform: translateX(-700px);
     }
 }

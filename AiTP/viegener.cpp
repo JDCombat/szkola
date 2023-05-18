@@ -32,8 +32,8 @@ string t[26] = {
         "zabcdefghijklmnopqrstuvwxy"
 };
 
-string zakoduj(string txt, string klucz);
-string odkoduj(string txt, int dlugosc, string klucz);
+string zakoduj(string txt,int dlugosc, string klucz);
+string odkoduj(string txt,int dlugosc, string klucz);
 int main() {
     ifstream in;
     in.open("text.txt");
@@ -41,23 +41,23 @@ int main() {
     getline(in, wyraz);
     in.close();
     string klucz = "make";
-    string tekst = zakoduj(wyraz, klucz);
+    string tekst = zakoduj(wyraz, 11, "make");
     ofstream szyfr, czysty;
     szyfr.open("szyfrogram.txt");
     cout << tekst;
     szyfr << tekst;
     szyfr.close();
-    tekst = odkoduj(tekst, 6, "ciupal");
+    tekst = odkoduj(tekst, 11, "make");
     czysty.open("odszyfrowane.txt");
     cout << tekst;
     czysty << tekst;
 }
 
-string zakoduj(string txt, string klucz) {
-    string zwrot;
+string zakoduj(string txt, int dlugosc, string klucz) {
+    string zwrot = "";
     int x, y;
-    while (klucz.size() < txt.size())klucz += klucz;
-    for(int i = 0; i < txt.size(); i++){
+    while (klucz.size() < dlugosc)klucz += klucz;
+    for(int i = 0; i < dlugosc; i++){
         x = 0;
         while (t[x][0] != klucz[i]){
             x++;
@@ -71,10 +71,10 @@ string zakoduj(string txt, string klucz) {
     return zwrot;
 }
 string odkoduj(string txt, int dlugosc, string klucz) {
-    string zwrot;
+    string zwrot = "";
     int x,y;
     while (klucz.size() < dlugosc) klucz += klucz;
-    for (int i = 0; i < txt.size(); i++){
+    for (int i = 0; i < dlugosc; i++){
         x = 0;
         while(t[x][0] != klucz[i]) x++;
         y = 0;

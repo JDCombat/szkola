@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            position: relative;
+            width: fit-content;
+            margin: 0 auto;
+            font-family: monospace;
+        }
+        span{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: white;
+            top: 0;
+            right: 0;
+            animation: pisz 10s alternate infinite steps(34);
+            animation-fill-mode: forwards;
+        }
+        @keyframes pisz {
+            0%{
+                width: 100%;
+            }
+            90%{
+                width: 0;
+            }
+            100%{
+                width: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>Tekst do animowania maszynistowego<span></span></p>
+    <iframe width="560" height="215" src="https://www.youtube-nocookie.com/embed/rIh_l31-uZw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>    
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d621.6480367551894!2d20.17414484633526!3d50.09649491411218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471648957fe65519%3A0xa472d6c7ea52b601!2sAndrzeja%20Stopki%2032%2C%2031-999%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1684324269640!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</body>
+</html>
