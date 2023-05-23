@@ -5,8 +5,22 @@
   <title>Title</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    #left{
+      left: -50px;
+      bottom: -220px;
+    }
     #intol{
-      right: -400px;
+      right: 0px;
+      bottom: -220px;
+    }
+    @media only screen and (max-width: 1125px){
+      #intol{
+        bottom: -400px;
+        right: 50px;
+      }
+      #left{
+        left: 60px;
+      }
     }
   </style>
 </head>
@@ -18,14 +32,14 @@
       <li><a href="procesor.html">Procesor</a></li>
       <li><a href="plyta.html">Płyta główna</a></li>
       <li><a href="ram.html">Pamięć RAM</a></li>
-      <li><a href="#">Karta Graficzna</a></li>
-      <li><a href="#">Dysk</a></li>
-      <li><a href="#">Zasilacz</a></li>
-      <li><a href="#">Obudowa</a></li>
+      <li><a href="karta.html">Karta Graficzna</a></li>
+      <li><a href="dysk.html">Dysk</a></li>
+      <li><a href="psu.html">Zasilacz</a></li>
+      <li><a href="case.html">Obudowa</a></li>
     </ul>
   </nav>
   <ul>
-    <li><a href="en/index_en.html">English 🇬🇧</a></li>
+    <li><a href="en/ram_en.html">English 🇬🇧</a></li>
   </ul>
 </header>
 <div id="container">
@@ -47,9 +61,11 @@
     Pamięć RAM można rozbudować lub uaktualnić, co jest często prostym sposobem na poprawę wydajności komputera.</p>
   </div>
   <div id="intol">
-    <img src="img/pngegg.png" alt="Intol" width="400" height="200">
-    <br>
+    <img src="img/pngegg.png" alt="Intol" width="500" height="200">
+  </div>
+  <div id="left">
     <img src="img/164022984412__48518.png" alt="intol" width="400" height="200">
+
   </div>
 </div>
 </body>

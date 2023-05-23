@@ -3,16 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
   <style>
+    #left{
+      left: -50px;
+      bottom: -220px;
+    }
     #intol{
-      right: -400px;
+      right: 0px;
+      bottom: -220px;
+    }
+    @media only screen and (max-width: 1125px){
+      #intol{
+        bottom: -400px;
+        right: 50px;
+      }
+      #left{
+        left: 60px;
+      }
     }
   </style>
 </head>
 <body>
 <header>
-  <a href="index.html"><img src="img/image.png" alt="Home Icon" width="60" height="68"></a>
+  <a href="../index.html"><img src="../img/image.png" alt="Home Icon" width="60" height="68"></a>
   <nav>
     <ul>
       <li><a href="procesor_en.html">Processor</a></li>
@@ -47,9 +61,11 @@
       RAM can be expanded or upgraded, which is often a simple way to improve computer performance.</p>
   </div>
   <div id="intol">
-    <img src="img/pngegg.png" alt="Intol" width="400" height="200">
-    <br>
-    <img src="img/164022984412__48518.png" alt="intol" width="400" height="200">
+    <img src="../img/pngegg.png" alt="Intol" width="400" height="200">
+  </div>
+  <div id="left">
+    <img src="../img/164022984412__48518.png" alt="intol" width="400" height="200">
+
   </div>
 </div>
 </body>
