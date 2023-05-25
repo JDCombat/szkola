@@ -14,6 +14,10 @@
             animation-name: fuu;
             animation-duration: 2s;
             animation-iteration-count: infinite;
+            animation-delay: 5s;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            margin: 0 auto;
         }
         @keyframes fuu{
             0%{
@@ -33,6 +37,8 @@
             }
             50%{
                 background-color: crimson;
+                scale: 2;
+                width: 300px;
             }
             60%{
                 background-color: rgb(108, 163, 63);
@@ -47,7 +53,7 @@
                 background-color: rgb(20, 107, 220);
             }
             100%{
-                background-color: rgb(37, 220, 20);
+                background-color: aqua;
             }
         }
     </style>
