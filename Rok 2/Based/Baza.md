@@ -14,3 +14,4 @@
   - Wszystkie dane w bazie relacyjnej przechowywane są w formie dwu wymiarowych tabel (tabela to relacja). Tabela może składać się z 0 lub większej liczby wierszy. Wiersz to krotka kolumna to atrybut
   - Po wprowadzeniu danych do bazy możliwe jest porównywanie wartości z różnych kolumn oraz z różnych tabel
   - Wszytskie operacje pomiędzy tabelami wykonywane są w oparciu o algebrę relacji bez względu na położenie wiersza tabeli
+  - W każdej tabeli istnieje potrzeba posiadania jednej lub więcej niepowtarzalnych kolumn które jednoznacznie identyfikujją konkrektny wiersz tabeli kolumnę bądź kolumny określa się jako klucz podstawowy lub primary key
