@@ -35,10 +35,15 @@ int** matmultip(int* matrix[], int* matrix2[]){
         int **wynik;
         wynik = new int* [m];
         for (int i = 0; i<m; i++){
-            wynik[i] = new int [o];
-            for (int j = 0; j<n; j++){
+            wynik[i] = new int [p];
+            for (int j = 0; j<p; j++){
+                wynik[i][j] = 0;
+                for (int k = 0; k<o;k++){
+                    wynik[i][j] += matrix[i][k]*matrix2[k][j];
+                }
             }
         }
+        return wynik;
     }
 }
 
@@ -57,18 +62,37 @@ int main(){
         }
     }
     int **tab2;
-    tab2 = new int* [m];
-    for (int i = 0; i<m;i++){
-            tab2[i] = new int [n];
-        for(int j = 0; j<n; j++){
+    tab2 = new int* [o];
+    for (int i = 0; i<o;i++){
+            tab2[i] = new int [p];
+        for(int j = 0; j<p; j++){
             tab2[i][j] = rand()%10;
         }
-        
     }
-    int **res = matskalar(tab1, 9);
-    for (int i = 0; i < m; i++){
+    cout << "Wygenerowane tablice" << endl;
+        for (int i = 0; i < m; i++){
         cout << "\n";
         for (int j = 0; j < n; j++){
+            cout << tab1[i][j] << " " ;
+        }
+    }
+
+    cout << endl << endl;
+
+        for (int i = 0; i < o; i++){
+        cout << "\n";
+        for (int j = 0; j < p; j++){
+            cout << tab2[i][j] << " " ;
+        }
+    }
+
+    cout << endl << endl;
+
+    cout << "Wynik to " << endl;
+    int **res = matmultip(tab1, tab2);
+    for (int i = 0; i < m; i++){
+        cout << "\n";
+        for (int j = 0; j < p; j++){
             cout << res[i][j] << " " ;
         }
     }
