@@ -9,3 +9,8 @@
 ### Data - data zakres od 100 do 9999
 ### Waluta - dane liczbowe , dokładność do 4 miejsc po przecinku przechowywuje do 15 cyfr przed przecinkiem. Wyświetla się też waluta
 ### Autonumerowanie - unikatowa liczba kolejna zwiększana o 1 lub liczba losowa przypisywana przez program przy dodawaniu nowego rekordu do tabeli. Nie można zaakutalizować. Może wystąpić tylko raz
+### Tak/Nie - prawda = -1 fałsz = 0
+### Obiekt OLE - przechowuje dokumenty utworzone w innych programach
+### Hiperłącze - tekst lub kombinacja tekstu i liczb które używane są jako adres internetowy
+### Załącznik - pozwala dołączyć pliki utworzone w innych programach
+### Kreator odnośnieków != typ danych - obiekt który powoduje połączenie pomiędzy dwoma tabelami
