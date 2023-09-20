@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <table class="nest">
+        <caption>Tabela 01</caption>
+        <thead>
+        <tr>
+            <td class="corner">AxB</td>
+            <td colspan="5">A</td>
+            <td class="corner">AxB</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td rowspan="5">B</td>
+            <th>00</th>
+            <th>01</th>
+            <th>02</th>
+            <th>03</th>
+            <th>04</th>
+            <td rowspan="5">B</td>
+        </tr>
+        <tr>
+            <th>01</th>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>02</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <th>03</th>
+            <td>3</td>
+            <td>6</td>
+            <td colspan="2" rowspan="2">9</td>
+
+        </tr>
+        <tr>
+            <th>04</th>
+            <td>4</td>
+            <td>8</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="corner">AxB</td>
+            <td colspan="5">A</td>
+            <td class="corner">AxB</td>
+        </tr>
+        </tfoot>
+    </table>
+    <table id="out">
+        <caption>Tabela zewnętrzna 2x2</caption>
+        <tr>
+        <td>
+            <table class="nest">
+                <caption>Tabela 11</caption>
+                <thead>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="5">B</td>
+                    <th>00</th>
+                    <th>01</th>
+                    <th>02</th>
+                    <th>03</th>
+                    <th>04</th>
+                    <td rowspan="5">B</td>
+                </tr>
+                <tr>
+                    <th>01</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th>02</th>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <th>03</th>
+                    <td>3</td>
+                    <td>6</td>
+                    <td colspan="2" rowspan="2">9</td>
+
+                </tr>
+                <tr>
+                    <th>04</th>
+                    <td>4</td>
+                    <td>8</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </tfoot>
+            </table>
+        </td>
+        <td>
+            <table class="nest">
+                <caption>Tabela 12</caption>
+                <thead>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="5">B</td>
+                    <th>00</th>
+                    <th>01</th>
+                    <th>02</th>
+                    <th>03</th>
+                    <th>04</th>
+                    <td rowspan="5">B</td>
+                </tr>
+                <tr>
+                    <th>01</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th>02</th>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <th>03</th>
+                    <td>3</td>
+                    <td>6</td>
+                    <td colspan="2" rowspan="2">9</td>
+
+                </tr>
+                <tr>
+                    <th>04</th>
+                    <td>4</td>
+                    <td>8</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </tfoot>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="nest">
+                <caption>Tabela 21</caption>
+                <thead>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="5">B</td>
+                    <th>00</th>
+                    <th>01</th>
+                    <th>02</th>
+                    <th>03</th>
+                    <th>04</th>
+                    <td rowspan="5">B</td>
+                </tr>
+                <tr>
+                    <th>01</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th>02</th>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <th>03</th>
+                    <td>3</td>
+                    <td>6</td>
+                    <td colspan="2" rowspan="2">9</td>
+
+                </tr>
+                <tr>
+                    <th>04</th>
+                    <td>4</td>
+                    <td>8</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </tfoot>
+            </table>
+        </td>
+        <td>
+            <table class="nest">
+                <caption>Tabela 22</caption>
+                <thead>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="5">B</td>
+                    <th>00</th>
+                    <th>01</th>
+                    <th>02</th>
+                    <th>03</th>
+                    <th>04</th>
+                    <td rowspan="5">B</td>
+                </tr>
+                <tr>
+                    <th>01</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th>02</th>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <th>03</th>
+                    <td>3</td>
+                    <td>6</td>
+                    <td colspan="2" rowspan="2">9</td>
+
+                </tr>
+                <tr>
+                    <th>04</th>
+                    <td>4</td>
+                    <td>8</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="corner">AxB</td>
+                    <td colspan="5">A</td>
+                    <td class="corner">AxB</td>
+                </tr>
+                </tfoot>
+            </table>
+        </td>
+    </tr>
+</body>
+</html>

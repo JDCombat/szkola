@@ -1,0 +1,30 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+td[colspan], td[rowspan]{background-color: cornflowerblue;}
+table{
+    text-align: center;
+}
+caption{
+    color: brown;
+    border: solid brown 2px;
+    padding: 2px;
+}
+.corner{
+    font-size: 10px;
+    border: 2px solid greenyellow;
+}
+.nest tbody th,.nest tbody td{
+    width: 25px;
+    height: 25px;
+    margin: 1px;
+    
+}
+th{
+    background-color: greenyellow;
+    font-weight: 100;
+}
+td[colspan][rowspan]{
+    border: 2px solid brown;
+}
+#out{
+    background-color: lightcyan;
+}
