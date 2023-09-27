@@ -38,3 +38,18 @@ Składa się z dwóch części oddzielonych średnikiem pierwsza część format
 ### Dla liczby
 4 części oddzielone średnikami. Pierwsza formatuje wartość dodatnią, druga wartość ujemną, trzecia wartość zero, czwarta wartość pustą
 ### dla pola tak/nie
+Rozpoczyna się od średnika, ma dwie części. Pierwsza do prawdy druga do fałszu
+
+### Maska wprowadzania - wymusza sposób wprowadzania danych do tabeli. Przy jej tworzeniu używamy symboli:
+- 0 - zastępuje cyfrę od 0-9 która usi być wprowadzona znak + i - są niedozwolone
+- 9 - zastępuje cyfrę od 0-9 która może być wprowadzona znak + i - jest niedozwolony
+- # - cyfra lub spacja która może być wprowadzona, znak + i - są dozwolone
+- L - litera od a-z która musi być wprowadzona
+- ? - zastępuje literę od a-z która może być wprowadzona
+- A - zastępuje literę lub cyfrę która musi być wprowadzona
+- a - ---------      ""      --------- może być wprowadzona
+- & - dowolny znak który musi być wprowadzony
+- C - --------  "" ------MOŻE ------- "" ------
+- > - małe na duże
+- < - na odfrut
+- \ - symbol na zwykły
