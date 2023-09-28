@@ -43,7 +43,7 @@ Rozpoczyna się od średnika, ma dwie części. Pierwsza do prawdy druga do fał
 ### Maska wprowadzania - wymusza sposób wprowadzania danych do tabeli. Przy jej tworzeniu używamy symboli:
 - 0 - zastępuje cyfrę od 0-9 która usi być wprowadzona znak + i - są niedozwolone
 - 9 - zastępuje cyfrę od 0-9 która może być wprowadzona znak + i - jest niedozwolony
-- # - cyfra lub spacja która może być wprowadzona, znak + i - są dozwolone
+- \# - cyfra lub spacja która może być wprowadzona, znak + i - są dozwolone
 - L - litera od a-z która musi być wprowadzona
 - ? - zastępuje literę od a-z która może być wprowadzona
 - A - zastępuje literę lub cyfrę która musi być wprowadzona
