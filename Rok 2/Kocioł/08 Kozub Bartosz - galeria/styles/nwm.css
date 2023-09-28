@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+header{
+    text-align: center;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+img{
+    margin: 100px;
+    filter: grayscale(100%);
+    animation: androtate 0.75s infinite linear;
+    margin-bottom: 0px;
+}
+@keyframes androtate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+button{
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid black;
+    transition: 0.5s all;
+    padding: 5px;
+}
+button:hover{
+    box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+}
+button{
+    width: 150px;
+    position: absolute;
+    left: calc(50% - 75px);
+}
+#bottom{
+    margin-bottom: 200px;
+}
