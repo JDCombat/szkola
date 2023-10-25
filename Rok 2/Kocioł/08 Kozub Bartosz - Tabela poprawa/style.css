@@ -23,6 +23,7 @@ code{
     width: fit-content;
     height: fit-content;
     padding: 5px;
+    margin-bottom: 0px;
 }
 .nest{
     width: 100%;
@@ -55,7 +56,7 @@ button{
     transition: all 500ms;
 }
 
-#yes, #no{
+#yes, #no, #return{
     display: none;
 }
 #yes{
@@ -64,6 +65,9 @@ button{
 }
 #yes:hover{
     animation: none;
+}
+button{
+    padding: 5px;
 }
 button:hover{
     background-color: var(--second-blue);
@@ -84,11 +88,14 @@ button:hover{
         opacity: 0; 
     }
 }
-@media only screen and (max-width:650px){
+@media only screen and (max-width:700px){
     *{
         font-size: 2vw;
     }
+}
+@media only screen and (max-width:650px){
     img{
         width: 100%;
+        height: 100%;
     }
 }
