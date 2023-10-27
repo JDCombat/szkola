@@ -25,6 +25,9 @@ class matrix{
         matrix minor(int j);
         static double laplace(matrix tab)
         {
+            if(tab.get_m() != tab.get_n()){
+                throw std::invalid_argument("Macierz musi być o rzomiarach MxM");
+            }
             if(tab.get_m()==1)
                 return tab.get(0,0);
             double wyznacznik = 0;
