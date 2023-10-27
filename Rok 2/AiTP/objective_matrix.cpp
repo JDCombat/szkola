@@ -1,15 +1,19 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
+
 
 class matrix{
     protected:
         double **a;
-        int m, n;
-        string name;
+        int m = 0;
+        int n = 0;
+        string name = " ";
     public:
         matrix();
         void create(int x, int y);
         matrix(int x, int y, string N);
+        matrix(const matrix& m);
         void fill();
         void show();
         void set(int i, int j, double r);
@@ -18,6 +22,16 @@ class matrix{
         int get_n();
         matrix transpose();
         ~matrix();
+        matrix minor(int j);
+        static double laplace(matrix tab)
+        {
+            if(tab.get_m()==1)
+                return tab.get(0,0);
+            double wyznacznik = 0;
+            for(int j=0; j<tab.get_m(); j++)
+                wyznacznik += pow(-1, j) * tab.get(0,j) * matrix::laplace(tab.minor(j));
+            return wyznacznik;
+        }
 };
 matrix add(matrix &A, matrix &B);
 matrix multiplyScalar(matrix &A, double skalar);
@@ -60,13 +74,23 @@ int main(){
 
     cout << "\n \nWynik mnożenia macierz";
     multiply(mA,mB).show();
-    cout << endl << endl << endl;
+    cout << "\n \n \nTranspozycja pierwszej macieży do mnożenia";
     mB.transpose().show();
+
+    cout << "\n \nWyznacznik pierwszej macierzy\n";
+
+    cout << matrix::laplace(A);
+    cout << "\n \nKopia drugiej macierzy";
+
+    matrix copy(B);
+    copy.show();
 
     return 0;
 }
 
-matrix::matrix() {};
+matrix::matrix() {
+    a = new double *[0];
+}
 void matrix::create(int x, int y){
     a = new double* [x];
     for (int i = 0; i<x;i++){
@@ -95,26 +119,37 @@ matrix::matrix(int x, int y, string N){
     create(m, n);
     fill();
 }
+matrix::matrix(const matrix& m){
+    this->m = m.m;
+    this->n = m.n;
+    this->name = m.name;
+    create(m.m, m.n);
+
+    for (int i = 0;i<m.m;i++){
+        for (int j = 0; j<m.n;j++){
+            a[i][j] = m.a[i][j];
+        }
+    }
+}
 void matrix::set(int i, int j, double r){
-    a[i][j] = r;
+    this->a[i][j] = r;
 }
 double matrix::get(int i, int j){
-    return a[i][j];
+    return this->a[i][j];
 }
 
 int matrix::get_m(){
-    return m;
+    return this->m;
 }
 
 int matrix::get_n(){
-    return n;
+    return this->n;
 }
 
 matrix add(matrix &A, matrix &B){
     if(A.get_m() != B.get_m() || A.get_n() != B.get_n()){
         throw std::invalid_argument("Macierze muszą być tej samej wielkości");
     }
-    else{
         matrix suma(A.get_m(), A.get_n(), "Suma");
         for (int i = 0; i < A.get_m(); i++){
             for (int j = 0; j < A.get_n(); j++){
@@ -122,7 +157,6 @@ matrix add(matrix &A, matrix &B){
             }
         }
         return suma;
-    }
 }
 matrix multiplyScalar(matrix &A, double skalar){
     matrix wynik(A.get_m(), A.get_n(), "Wynik mnożenia przez skalar");
@@ -137,7 +171,6 @@ matrix multiply(matrix &A, matrix &B){
     if (A.get_n() != B.get_m()){
         throw std::invalid_argument("Macierze mają być rozmiarów MxK i KxN");
     }
-    else{
         matrix wynik(A.get_m(),B.get_n(),"Wynik mnożenia macierzy");
         double sum;
         for (int i = 0; i<A.get_m(); i++){
@@ -150,24 +183,37 @@ matrix multiply(matrix &A, matrix &B){
             }
         }
         return wynik;
-    }
 }
 
 matrix matrix::transpose(){
     matrix A(n,m,"A");
     for (int i = 0; i<n;i++){
-        for (int j = i+1; j<m; j++){
-            double set_value = a[i][j];
-            A.set(j,i,set_value);
+        for (int j = 0; j<m; j++){
+            double set_value = a[j][i];
+            A.set(i,j,set_value);
         }
     }
     return A;
 }
 
 matrix::~matrix(){
-//  for (int i=0; i<m; i++)
-//     {
-//         delete[] a[i];
-//     }
-//     delete[] a;
+ for (int i=0; i<m; i++)
+    {
+        delete[] a[i];
+    }
+    delete[] a;
+}
+matrix matrix::minor(int j)
+{
+    matrix minor(m-1,m-1, "nieletni");
+    for(int k=0; k<m-1; k++)
+        for(int l=0; l<m-1; l++)
+        {
+            if(l>=j)
+               minor.set(k,l, a[k+1][l+1]);
+            else{
+                minor.set(k,l, a[k+1][l]);
+            }
+        }
+    return minor;
 }
