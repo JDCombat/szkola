@@ -165,7 +165,7 @@ matrix add(matrix &A, matrix &B){
     if(A.get_m() != B.get_m() || A.get_n() != B.get_n()){
         throw std::invalid_argument("Macierze muszą być tej samej wielkości");
     }
-        matrix suma(A.get_m(), A.get_n(), "Wynik dodawania macierz: " + string(A.get_name()) + " i " + string(B.get_name()));
+        matrix suma(A.get_m(), A.get_n(), "Wynik dodawania macierz: " + A.get_name() + " i " + B.get_name());
         for (int i = 0; i < A.get_m(); i++){
             for (int j = 0; j < A.get_n(); j++){
                 suma.set(i,j,A.get(i,j)+B.get(i,j));
@@ -196,7 +196,7 @@ matrix multiplyScalar(matrix &A, double skalar){
     return wynik;
 }
 matrix matrix::operator* (double skalar){
-    matrix wynik(m, n, "Wynik mnożenia przez skalar macierzy: " + name);
+    matrix wynik(m, n, "Wynik mnożenia macierzy: " + name + " przez skalar " + to_string((int)skalar));
     for (int i = 0; i<m; i++){
         for (int j = 0; j<n; j++){
             wynik.set(i,j,a[i][j]*skalar);
@@ -208,7 +208,7 @@ matrix multiply(matrix &A, matrix &B){
     if (A.get_n() != B.get_m()){
         throw std::invalid_argument("Macierze mają być rozmiarów MxK i KxN");
     }
-        matrix wynik(A.get_m(),B.get_n(),"Wynik mnożenia macierzy");
+        matrix wynik(A.get_m(),B.get_n(),"Wynik mnożenia macierz " + A.get_name() + " i " + B.get_name());
         double sum;
         for (int i = 0; i<A.get_m(); i++){
             for (int j = 0; j<B.get_n(); j++){
@@ -225,7 +225,7 @@ matrix matrix::operator* (const matrix &B){
     if (n != B.m){
         throw std::invalid_argument("Macierze mają być rozmiarów MxK i KxN");
     }
-        matrix wynik(m,B.n,"Wynik mnożenia macierzy");
+        matrix wynik(m,B.n,"Wynik mnożenia macierzy " + name + " i " + B.name);
         double sum;
         for (int i = 0; i<m; i++){
             for (int j = 0; j<B.n; j++){
