@@ -20,6 +20,7 @@ class matrix{
         double get(int i, int j);
         int get_m();
         int get_n();
+        string get_name();
         matrix transpose();
         ~matrix();
         matrix minor(int j);
@@ -49,45 +50,43 @@ int main(){
     cout << "Podaj wielkość macierz" << endl;
     cin >> a;
     b=a;
-    matrix A(a,b,"Pierwsza");
-    cout << "Pierwsza macierz" << endl;
+    matrix A(a,b,"Pierwsza macierz");
     A.show();
-    matrix B(a,b,"Druga");
-    cout << "\nDruga macierz" << endl;
+    matrix B(a,b,"Druga macierz");
     B.show();
     
-    cout << " \n \nWynik dodawania\n";
+    // add(A,B).show()
     (A+B).show();
 
     int skalar;
     cout << "\n \nPodaj skalar\n";
     cin >> skalar;
-    cout << "\n \nWynik mnożenia drugiej macierzy przez skalar" << endl << endl;
+    // multiplyScalar(B,skalar).show()
     (B*skalar).show();
 
+    cout << "Podaj wymiary pierwszej macierzy do mnożenia\n \n";
     int e,f;
-    cout << "\n \nPodaj wielkość pierwszej macierzy do mnożenia" << endl;
     cin >> e >> f;
-    matrix mA(e,f,"Multiply1");
-    cout << "Pierwsza macierz" << endl;
+    matrix mA(e,f,"Pierwsza macierz do mnożenia");
+    cout << "" << endl;
     mA.show();
 
+    cout << "Podaj wymiary drugiej macierzy do mnożenia\n \n";
+
     int g,h;
-    cout << "\n \nPodaj wielkość pierwszej macierzy do mnożenia" << endl;
     cin >> g >> h;
-    matrix mB(g,h,"Multiply1");
-    cout << "Druga macierz" << endl;
+    matrix mB(g,h,"Druga macierz do mnożenia");
     mB.show();
 
-    cout << "\n \nWynik mnożenia macierz";
+    // multiply(mA,mB).show()
     (mA*mB).show();
-    cout << "\n \n \nTranspozycja pierwszej macieży do mnożenia";
     mB.transpose().show();
 
-    cout << "\n \nWyznacznik pierwszej macierzy\n";
+    cout << "Wyznacznik pierwszej macierzy\n";
 
-    cout << matrix::laplace(A);
-    cout << "\n \nKopia drugiej macierzy";
+    cout << matrix::laplace(A) << endl << endl;
+
+    // matrix copy(B).show()
     matrix copy;
     (copy = B).show();
 
@@ -111,12 +110,14 @@ void matrix::fill(){
     }
 }
 void matrix::show(){
+    cout << name << endl;
     for (int i = 0; i < m; i++){
         cout << "\n";
         for (int j = 0; j < n; j++){
             cout << a[i][j] << " " ;
         }
     }
+    cout << endl << endl;
 }
 matrix::matrix(int x, int y, string N){
     this->m = x;
@@ -128,7 +129,7 @@ matrix::matrix(int x, int y, string N){
 matrix::matrix(const matrix& m){
     this->m = m.m;
     this->n = m.n;
-    this->name = m.name;
+    this->name = "Kopia " + m.name;
     create(m.m, m.n);
 
     for (int i = 0;i<m.m;i++){
@@ -156,11 +157,15 @@ int matrix::get_n(){
     return this->n;
 }
 
+string matrix::get_name(){
+    return this->name;
+}
+
 matrix add(matrix &A, matrix &B){
     if(A.get_m() != B.get_m() || A.get_n() != B.get_n()){
         throw std::invalid_argument("Macierze muszą być tej samej wielkości");
     }
-        matrix suma(A.get_m(), A.get_n(), "Suma");
+        matrix suma(A.get_m(), A.get_n(), "Wynik dodawania macierz: " + string(A.get_name()) + " i " + string(B.get_name()));
         for (int i = 0; i < A.get_m(); i++){
             for (int j = 0; j < A.get_n(); j++){
                 suma.set(i,j,A.get(i,j)+B.get(i,j));
@@ -172,7 +177,7 @@ matrix matrix::operator+ (const matrix &B){
     if(m != B.m || n != B.n){
         throw std::invalid_argument("Macierze muszą być tej samej wielkości");
     }
-    matrix suma(m, n, "Suma");
+    matrix suma(m, n, "Wynik dodawania macierz: " + name + " i " + B.name);
     for (int i = 0; i < m; i++){
         for (int j = 0; j < n; j++){
             //suma.set(i,j,A.get(i,j)+B.get(i,j));
@@ -182,7 +187,7 @@ matrix matrix::operator+ (const matrix &B){
     return suma;
 }
 matrix multiplyScalar(matrix &A, double skalar){
-    matrix wynik(A.get_m(), A.get_n(), "Wynik mnożenia przez skalar");
+    matrix wynik(A.get_m(), A.get_n(), "Wynik mnożenia przez skalar macierzy " + A.get_name());
     for (int i = 0; i<A.get_m(); i++){
         for (int j = 0; j<A.get_n(); j++){
             wynik.set(i,j,A.get(i,j)*skalar);
@@ -191,7 +196,7 @@ matrix multiplyScalar(matrix &A, double skalar){
     return wynik;
 }
 matrix matrix::operator* (double skalar){
-    matrix wynik(m, n, "Wynik mnożenia przez skalar");
+    matrix wynik(m, n, "Wynik mnożenia przez skalar macierzy: " + name);
     for (int i = 0; i<m; i++){
         for (int j = 0; j<n; j++){
             wynik.set(i,j,a[i][j]*skalar);
@@ -235,7 +240,7 @@ matrix matrix::operator* (const matrix &B){
 }
 
 matrix matrix::transpose(){
-    matrix A(n,m,"A");
+    matrix A(n,m,"Transponowana macierz: " + name);
     for (int i = 0; i<n;i++){
         for (int j = 0; j<m; j++){
             double set_value = a[j][i];
