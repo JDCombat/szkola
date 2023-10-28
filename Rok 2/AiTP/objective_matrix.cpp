@@ -35,6 +35,10 @@ class matrix{
                 wyznacznik += pow(-1, j) * tab.get(0,j) * matrix::laplace(tab.minor(j));
             return wyznacznik;
         }
+        matrix operator+ (const matrix &B);
+        matrix operator* (const double scalar);
+        matrix operator* (const matrix &B);
+        matrix operator= (const matrix &B);
 };
 matrix add(matrix &A, matrix &B);
 matrix multiplyScalar(matrix &A, double skalar);
@@ -53,13 +57,13 @@ int main(){
     B.show();
     
     cout << " \n \nWynik dodawania\n";
-    add(A,B).show();
+    (A+B).show();
 
     int skalar;
     cout << "\n \nPodaj skalar\n";
     cin >> skalar;
     cout << "\n \nWynik mnożenia drugiej macierzy przez skalar" << endl << endl;
-    multiplyScalar(B, skalar).show();
+    (B*skalar).show();
 
     int e,f;
     cout << "\n \nPodaj wielkość pierwszej macierzy do mnożenia" << endl;
@@ -76,7 +80,7 @@ int main(){
     mB.show();
 
     cout << "\n \nWynik mnożenia macierz";
-    multiply(mA,mB).show();
+    (mA*mB).show();
     cout << "\n \n \nTranspozycja pierwszej macieży do mnożenia";
     mB.transpose().show();
 
@@ -84,9 +88,8 @@ int main(){
 
     cout << matrix::laplace(A);
     cout << "\n \nKopia drugiej macierzy";
-
-    matrix copy(B);
-    copy.show();
+    matrix copy;
+    (copy = B).show();
 
     return 0;
 }
@@ -134,6 +137,10 @@ matrix::matrix(const matrix& m){
         }
     }
 }
+matrix matrix::operator= (const matrix &B){
+    matrix m_copy(B);
+    return m_copy;
+}
 void matrix::set(int i, int j, double r){
     this->a[i][j] = r;
 }
@@ -161,11 +168,33 @@ matrix add(matrix &A, matrix &B){
         }
         return suma;
 }
+matrix matrix::operator+ (const matrix &B){
+    if(m != B.m || n != B.n){
+        throw std::invalid_argument("Macierze muszą być tej samej wielkości");
+    }
+    matrix suma(m, n, "Suma");
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            //suma.set(i,j,A.get(i,j)+B.get(i,j));
+            suma.set(i,j,a[i][j]+B.a[i][j]);
+        }
+    }
+    return suma;
+}
 matrix multiplyScalar(matrix &A, double skalar){
     matrix wynik(A.get_m(), A.get_n(), "Wynik mnożenia przez skalar");
     for (int i = 0; i<A.get_m(); i++){
         for (int j = 0; j<A.get_n(); j++){
             wynik.set(i,j,A.get(i,j)*skalar);
+        }
+    }
+    return wynik;
+}
+matrix matrix::operator* (double skalar){
+    matrix wynik(m, n, "Wynik mnożenia przez skalar");
+    for (int i = 0; i<m; i++){
+        for (int j = 0; j<n; j++){
+            wynik.set(i,j,a[i][j]*skalar);
         }
     }
     return wynik;
@@ -180,6 +209,23 @@ matrix multiply(matrix &A, matrix &B){
             for (int j = 0; j<B.get_n(); j++){
                 for (int k = 0; k<B.get_m();k++){
                     sum += A.get(i,k)*B.get(k,j);
+                    wynik.set(i,j,sum);
+                }
+                sum = 0;
+            }
+        }
+        return wynik;
+}
+matrix matrix::operator* (const matrix &B){
+    if (n != B.m){
+        throw std::invalid_argument("Macierze mają być rozmiarów MxK i KxN");
+    }
+        matrix wynik(m,B.n,"Wynik mnożenia macierzy");
+        double sum;
+        for (int i = 0; i<m; i++){
+            for (int j = 0; j<B.n; j++){
+                for (int k = 0; k<B.m;k++){
+                    sum += a[i][k]*B.a[k][j];
                     wynik.set(i,j,sum);
                 }
                 sum = 0;
