@@ -27,7 +27,7 @@ class matrix{
         static double laplace(matrix tab)
         {
             if(tab.get_m() != tab.get_n()){
-                throw std::invalid_argument("Macierz musi być o rzomiarach MxM");
+                throw std::invalid_argument("Macierz musi być o rozmiarach MxM");
             }
             if(tab.get_m()==1)
                 return tab.get(0,0);
@@ -195,11 +195,11 @@ matrix multiplyScalar(matrix &A, double skalar){
     }
     return wynik;
 }
-matrix matrix::operator* (double skalar){
-    matrix wynik(m, n, "Wynik mnożenia macierzy: " + name + " przez skalar " + to_string((int)skalar));
+matrix matrix::operator* (const double scalar){
+    matrix wynik(m, n, "Wynik mnożenia macierzy: " + name + " przez skalar " + to_string((int)scalar));
     for (int i = 0; i<m; i++){
         for (int j = 0; j<n; j++){
-            wynik.set(i,j,a[i][j]*skalar);
+            wynik.set(i,j,a[i][j]*scalar);
         }
     }
     return wynik;
