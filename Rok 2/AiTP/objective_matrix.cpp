@@ -36,10 +36,23 @@ class matrix{
                 wyznacznik += pow(-1, j) * tab.get(0,j) * matrix::laplace(tab.minor(j));
             return wyznacznik;
         }
-        friend matrix operator+ (const matrix &B);
-        friend matrix operator* (const double scalar);
-        friend matrix operator* (const matrix &B);
-        friend matrix& operator= (const matrix &B);
+        friend matrix operator+ (matrix &A, matrix &B);
+        friend matrix operator* (matrix a, const double scalar);
+        friend matrix operator* (matrix &A, matrix &B);
+        matrix& operator= (const matrix &B){
+            this->m = B.m;
+            this->n = B.n;
+            this->name = B.name;
+            this->a = new double*[this->m];
+            for (int i = 0;i<m;i++){
+                this->a[i] = new double[this->n]();
+                for (int j = 0;j<n;j++){
+                    this->a[i][j] = B.a[i][j];
+                }
+            }
+
+            return *this;
+        }
         friend istream& operator>> (istream&s, matrix &a);
         friend ostream& operator<< (ostream&s, matrix a);
         double* operator[] (int i){
@@ -155,20 +168,7 @@ matrix::matrix(const matrix& m){
         }
     }
 }
-matrix& operator= (const matrix &B){
-    this->m = B.m;
-    this->n = B.n;
-    this->name = B.name;
-    this->a = new double*[this->m];
-    for (int i = 0;i<m;i++){
-        this->a[i] = new double[this->n]();
-        for (int j = 0;j<n;j++){
-            this->a[i][j] = B.a[i][j];
-        }
-    }
 
-    return *this;
-}
 void matrix::set(int i, int j, double r){
     this->a[i][j] = r;
 }
@@ -200,15 +200,15 @@ matrix add(matrix &A, matrix &B){
         }
         return suma;
 }
-matrix matrix::operator+ (const matrix &B){
-    if(m != B.m || n != B.n){
+matrix operator+ (matrix &A, matrix &B){
+    if(A.m != B.m || A.n != B.n){
         throw std::invalid_argument("Macierze muszą być tej samej wielkości");
     }
-    matrix suma(m, n, "Wynik dodawania macierz: " + name + " i " + B.name);
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < n; j++){
+    matrix suma(A.m, A.n, "Wynik dodawania macierz: " + A.name + " i " + B.name);
+    for (int i = 0; i < A.m; i++){
+        for (int j = 0; j < A.n; j++){
             //suma.set(i,j,A.get(i,j)+B.get(i,j));
-            suma.set(i,j,a[i][j]+B.a[i][j]);
+            suma.set(i,j,A.a[i][j]+B.a[i][j]);
         }
     }
     return suma;
@@ -222,10 +222,10 @@ matrix multiplyScalar(matrix &A, double skalar){
     }
     return wynik;
 }
-matrix operator* (const double scalar){
-    matrix wynik(m, n, "Wynik mnożenia macierzy: " + name + " przez skalar " + to_string((int)scalar));
-    for (int i = 0; i<m; i++){
-        for (int j = 0; j<n; j++){
+matrix operator* (matrix a, const double scalar){
+    matrix wynik(a.m, a.n, "Wynik mnożenia macierzy: " + a.name + " przez skalar " + to_string((int)scalar));
+    for (int i = 0; i<a.m; i++){
+        for (int j = 0; j<a.n; j++){
             wynik.set(i,j,a[i][j]*scalar);
         }
     }
@@ -248,16 +248,16 @@ matrix multiply(matrix &A, matrix &B){
         }
         return wynik;
 }
-matrix operator* (const matrix &B){
-    if (n != B.m){
+matrix operator* (matrix &A, matrix &B){
+    if (A.n != B.m){
         throw std::invalid_argument("Macierze mają być rozmiarów MxK i KxN");
     }
-        matrix wynik(m,B.n,"Wynik mnożenia macierzy " + name + " i " + B.name);
+        matrix wynik(A.m,B.n,"Wynik mnożenia macierzy " + A.name + " i " + B.name);
         double sum;
-        for (int i = 0; i<m; i++){
+        for (int i = 0; i<A.m; i++){
             for (int j = 0; j<B.n; j++){
                 for (int k = 0; k<B.m;k++){
-                    sum += a[i][k]*B.a[k][j];
+                    sum += A.a[i][k]*B.a[k][j];
                     wynik.set(i,j,sum);
                 }
                 sum = 0;
