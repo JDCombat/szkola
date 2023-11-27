@@ -1,0 +1,4 @@
+C:\Users\Nowy2\AppData\Local\JetBrains\Toolbox\apps\CLion-Nova\ch-0\233.11868\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/Nowy2/AppData/Local/JetBrains/Toolbox/apps/CLion-Nova/ch-0/233.11868/bin/ninja/win/x64/ninja.exe -G Ninja -S "D:\Szkola\szkola\Rok 2\AiTP\matrix_cmake" -B "D:\Szkola\szkola\Rok 2\AiTP\matrix_cmake\cmake-build-debug"
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/Szkola/szkola/Rok 2/AiTP/matrix_cmake/cmake-build-debug

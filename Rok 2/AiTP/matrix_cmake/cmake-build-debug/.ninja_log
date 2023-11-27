@@ -1,0 +1,5 @@
+# ninja log v5
+0	753	7216901082648929	CMakeFiles/matrix_cmake.dir/main.cpp.obj	b0ebf9bc7ee8b698
+7	784	7216901082970981	CMakeFiles/matrix_cmake.dir/sources/matrix.cpp.obj	b1d31406b4f044f8
+13	839	7216901083501611	CMakeFiles/matrix_cmake.dir/sources/function.cpp.obj	a4cb7535bc995e6c
+839	989	7216901084985412	matrix_cmake.exe	c7217c35597ad75f
