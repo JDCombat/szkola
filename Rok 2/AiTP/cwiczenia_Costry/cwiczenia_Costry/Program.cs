@@ -75,9 +75,7 @@ namespace cwiczenia_Costry
             string aString = a.ToString();
             for (int i = 0; i < aString.Length; i++)
             {
-                Console.WriteLine(aString[i]);
-                sum += aString[i];
-                Console.WriteLine(sum);
+                sum += int.Parse(aString[i].ToString());
             }
 
             return sum;
@@ -89,7 +87,6 @@ namespace cwiczenia_Costry
             do
             {
                 a = sumDigits(a);
-                Console.WriteLine(a);
             } while (a >= 10);
 
             return a;
@@ -98,17 +95,33 @@ namespace cwiczenia_Costry
         static string cw5(string text)
         {
             int counter = 0;
-            char character;
-            string txt_return = " ";
+            char currentCharacter = text[0];
+            string txt_return = "";
             for (int i = 0; i < text.Length; i++)
             {
-                if (text[i+1] == text[i])
+                if (text[i] == currentCharacter)
                 {
-                    character = text[i];
                     counter++;
                 }
+                else
+                {
+                    txt_return += currentCharacter;
+                    if (counter > 1)
+                    {
+                        txt_return += counter;
+                    }
+
+                    currentCharacter = text[i];
+                    counter = 1;
+                }
+                
             }
-            return "czuj";
+            txt_return += currentCharacter;
+            if (counter > 1)
+            {
+                txt_return += counter;
+            }
+            return txt_return;
         }
         static double[] cw6()
         {
@@ -135,7 +148,35 @@ namespace cwiczenia_Costry
 
         static void cw7(int size)
         {
-            
+            int[][] pascal = new int[size][];
+            for (int i = 0; i < size; i++)
+            {
+                pascal[i] = new int[i + 1];
+            }
+
+            for (int i = 0; i < pascal.Length; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    if (j == 0 || i == j)
+                    {
+                        pascal[i][j] = 1;
+                    }
+                    else
+                    {
+                        pascal[i][j] = pascal[i - 1][j - 1] + pascal[i - 1][j];
+                    }
+                }
+            }
+
+            foreach (var tab in pascal)
+            {
+                foreach (var item in tab)
+                {
+                    Console.Write(item + "\t");
+                }
+                Console.WriteLine();
+            }
         }
         static uint nwd(uint a, uint b)
         {
@@ -172,6 +213,33 @@ namespace cwiczenia_Costry
             return days.Days;
         }
 
+        static void Figura()
+        {
+            Console.WriteLine("Podaj długość boku");
+            int size = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            char[,] tab = new char[size, size];
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    tab[i, j] = ' ';
+                    tab[0, j] = '*';
+                    tab[size - 1, j] = '*';
+                }
+                tab[i, 0] = '*';
+                tab[i, size - 1] = '*';
+                tab[i, i] = '*';
+                tab[i, size - i - 1] = '*';
+                
+                for (int j = 0; j < size; j++)
+                {
+                    Console.Write(tab[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+
+        }
         static void Kalkulator()
         {
             Console.WriteLine("Podaj pierwszą liczbę");
@@ -182,10 +250,10 @@ namespace cwiczenia_Costry
             string result = "";
             switch (znak)
             {
-                case '+': result = $"{a}\n{znak}\n{b}\n=\n{a + b}"; break;
-                case '-': result = $"{a}\n{znak}\n{b}\n=\n{a - b}"; break;
-                case '*': result = $"{a}\n{znak}\n{b}\n=\n{a * b}"; break;
-                case '/': result = $"{a}\n{znak}\n{b}\n=\n{a / b}"; break;
+                case '+': result = $"{a:N}\n{znak}\n{b:N}\n=\n{a + b:N}"; break;
+                case '-': result = $"{a:N}\n{znak}\n{b:N}\n=\n{a - b:N}"; break;
+                case '*': result = $"{a:N}\n{znak}\n{b:N}\n=\n{a * b:N}"; break;
+                case '/': result = $"{a:N}\n{znak}\n{b:N}\n=\n{a / b:N}"; break;
             }
 
             Console.WriteLine(result);
@@ -237,14 +305,17 @@ namespace cwiczenia_Costry
             // Console.WriteLine(cw2() == true ? "Yesh" : "no");
             // Console.WriteLine(cw2star() == true ? "Yesh" : "no");
             // cw3();
-            sumDigits(34);
+            // Console.WriteLine(cw5("kkkktttrrrrrrrrr"));
+            // Console.WriteLine(cw4());
             // foreach(var item in cw6())
             // {
             //     Console.Write(item + " ");
             // }
+            // cw7(7);
             // Console.WriteLine(cw8());
             // Console.WriteLine(cw8star(10,5));
             // Console.WriteLine(cw9());
+            Figura();
             // Tablica();
             // TablicaZnaków();
             // Kalkulator();
