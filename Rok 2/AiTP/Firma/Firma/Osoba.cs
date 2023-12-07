@@ -117,18 +117,26 @@ public class Osoba
         int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
         int sum = 0;
 
-        if (expr)
-        {
-            
-        }
+        if (PESEL[9] % 2 == 0 && this.plec == Plcie.M) return false;
+
+        Console.WriteLine(dataUrodzenia.Year.ToString().Substring(2,2));
+        if (PESEL.Substring(0, 2) != dataUrodzenia.Year.ToString().Substring(2, 2)) return false;
+
+        Console.WriteLine(dataUrodzenia.Month);
+        if (dataUrodzenia.Year >= 1900 && dataUrodzenia.Year < 2000 && dataUrodzenia.Month != int.Parse(PESEL.Substring(2, 2))) return false;
+        else if (dataUrodzenia.Year >= 2000 && dataUrodzenia.Year < 2100 && dataUrodzenia.Month != int.Parse(PESEL.Substring(2, 2)) - 20) return false;
+        else if (dataUrodzenia.Year >= 2100 && dataUrodzenia.Year < 2200 && dataUrodzenia.Month != int.Parse(PESEL.Substring(2, 2)) - 40) return false;
+        else if (dataUrodzenia.Year >= 2200 && dataUrodzenia.Year < 2300 && dataUrodzenia.Month != int.Parse(PESEL.Substring(2, 2)) - 60) return false;
+
         
         for (int i = 0; i < 10; i++)
         {
             sum += int.Parse(PESEL[i].ToString())*wagi[i] % 10;
         }
 
+        Console.WriteLine(PESEL[10]);
         Console.WriteLine(10 - (sum % 10));
-        if (PESEL[10] != 10 - (sum % 10)) return false;
+        if (int.Parse(PESEL[10].ToString()) == 10 - (sum % 10)) return false;
         return true;
     }
 }
