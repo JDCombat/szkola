@@ -18,7 +18,6 @@
             Console.WriteLine(os2.ToString());
             Console.WriteLine(os3.ToString());
             Console.WriteLine();
-            Console.WriteLine();
             Zespół it = new Zespół("Grupa it", os2);
             it.dodajCzłonka(os1, os3);
             Console.WriteLine(it.ToString());
