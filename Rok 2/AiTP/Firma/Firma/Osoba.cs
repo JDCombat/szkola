@@ -2,13 +2,16 @@
 
 namespace Firma;
 
-public class Osoba
+public abstract class Osoba
 {
     private string imie;
     private DateTime dataUrodzenia;
     private string PESEL;
     private Plcie plec;
     private string nr_tel;
+    
+    public Plcie Plec => plec;
+    
     
     public string Imie
     {
@@ -96,7 +99,7 @@ public class Osoba
             ? (DateTime.Now.Year-dataUrodzenia.Year + 1)
             : (DateTime.Now.Year-dataUrodzenia.Year);
     }
-
+    
     public override string ToString()
     {
         format();
