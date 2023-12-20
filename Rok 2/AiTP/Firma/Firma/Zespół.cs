@@ -60,4 +60,57 @@ public class Zespół
         }
         return sb.ToString();
     }
+
+    public bool jestCzlonkiem(string pesel)
+    {
+        foreach (var czlonek in członkowie)
+        {
+            if (czlonek.Pesel == pesel)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public bool jestCzlonkiem(string imie, string nazwisko)
+    {
+        foreach (var czlonek in członkowie)
+        {
+            if (czlonek.Imie == imie && czlonek.Nazwisko == nazwisko)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void usunCzlonka(string pesel)
+    {
+        członkowie.Remove(członkowie.Find(c => c.Pesel == pesel));
+        liczbaCzłonków--;
+    }
+    public void usunCzlonka(string imie, string nazwisko)
+    {
+        członkowie.Remove(członkowie.Find(c => c.Nazwisko == nazwisko && c.Imie == imie));
+        liczbaCzłonków--;
+    }
+
+    public void usunWszystkich()
+    {
+        członkowie.Clear();
+        liczbaCzłonków = 0;
+    }
+    
+    public List<CzłonekZespołu> wyszukajCzlonkow(string funkcja)
+    {
+        List<CzłonekZespołu> result = członkowie.FindAll(c => c.funkcja == funkcja);
+        return result;
+    }
+    public List<CzłonekZespołu> wyszukajCzlonkow(int miesiac)
+    {
+        List<CzłonekZespołu> result = członkowie.FindAll(c => c.dataZapisu.Month == miesiac);
+        return result;
+    }
 }
