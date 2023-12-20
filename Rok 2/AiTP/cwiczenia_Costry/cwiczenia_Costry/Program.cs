@@ -12,10 +12,10 @@ namespace cwiczenia_Costry
             Console.WriteLine("Podaj drugą liczbę");
             float second;
             second = float.Parse(Console.ReadLine());
-            Console.WriteLine(Math.Round(first + second, 2));
-            Console.WriteLine(Math.Round(first - second, 2));
-            Console.WriteLine(Math.Round(first * second, 2));
-            Console.WriteLine(Math.Round(first / second, 2));
+            Console.WriteLine("Suma " + Math.Round(first + second, 2));
+            Console.WriteLine("Różnica " + Math.Round(first - second, 2));
+            Console.WriteLine("Mnożenie " + Math.Round(first * second, 2));
+            Console.WriteLine("Dzielenie " + Math.Round(first / second, 2));
         }
         
 
@@ -27,7 +27,7 @@ namespace cwiczenia_Costry
             int[] tab = new int[10];
             for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine("Podaj " + (i + 1)  + "liczbę");
+                Console.WriteLine("Podaj " + (i + 1)  + " liczbę");
                 tab[i] = int.Parse(Console.ReadLine());
                 if (tab[i] % 3 == 0 || tab[i] % 5 == 0)
                 {
@@ -44,6 +44,7 @@ namespace cwiczenia_Costry
         {
             uint number;
             int digit = 3;
+            Console.WriteLine("Podaj liczbę");
             number = uint.Parse(Console.ReadLine());
             do
             {
@@ -57,12 +58,14 @@ namespace cwiczenia_Costry
         static bool cw2star()
         {
             uint number = 0;
+            Console.WriteLine("Podaj liczbę");
             number = uint.Parse(Console.ReadLine());
             return number.ToString().Contains("3");
         }
 
         static void cw3()
         {
+            Console.WriteLine("Podaj słowa");
             string input;
             input = Console.ReadLine();
             string[] s = Regex.Split(input, "([a-zA-Z0-9]+)");
@@ -82,6 +85,7 @@ namespace cwiczenia_Costry
         }
         static int cw4()
         {
+            Console.WriteLine("Podaj liczbę");
             int a = 0;
             a = int.Parse(Console.ReadLine());
             do
@@ -127,10 +131,11 @@ namespace cwiczenia_Costry
         {
             Random rnd = new Random();
             double[] tab = new double[10];
+            Console.WriteLine("Nieposortowana tablica");
             for (int i = 0; i < 10; i++)
             {
-                tab[i] = rnd.Next(10);
-                Console.Write(tab[i] + " ");
+                tab[i] = rnd.Next(100);
+                Console.Write(tab[i] + "\t");
             }
             Console.WriteLine();
             for (int i = 0; i < tab.Length - 1; i++)
@@ -143,6 +148,8 @@ namespace cwiczenia_Costry
                     }
                 }
             }
+
+            Console.WriteLine("Posortowana tablica");
             return tab;
         }
 
@@ -169,6 +176,7 @@ namespace cwiczenia_Costry
                 }
             }
 
+            Console.WriteLine($"Trójkąt Pascala dla rozmiaru {size}");
             foreach (var tab in pascal)
             {
                 foreach (var item in tab)
@@ -184,6 +192,7 @@ namespace cwiczenia_Costry
         }
         static uint cw8()
         {
+            Console.WriteLine("Podaj liczby");
             uint a, b;
             a = uint.Parse(Console.ReadLine());
             b = uint.Parse(Console.ReadLine());
@@ -208,7 +217,7 @@ namespace cwiczenia_Costry
         static int cw9()
         {
             DateTime today = DateTime.Today;
-            DateTime end = new DateTime(2023, 12, 31, 23, 59, 59);
+            DateTime end = new DateTime(DateTime.Today.Year, 12, 31, 23, 59, 59, 99);
             TimeSpan days = end - today;
             return days.Days;
         }
@@ -246,6 +255,7 @@ namespace cwiczenia_Costry
             double a = double.Parse(Console.ReadLine());
             Console.WriteLine("Podaj znak");
             char znak = Console.ReadLine()[0];
+            Console.WriteLine("Podaj drugą liczbę");
             double b = double.Parse(Console.ReadLine());
             string result = "";
             switch (znak)
@@ -260,6 +270,7 @@ namespace cwiczenia_Costry
         }
         static void Tablica()
         {
+            Console.WriteLine("Podaj rozmiar tablicy");
             Random rnd = new Random();
             int n;
             int even = 0, odd = 0;
@@ -300,25 +311,26 @@ namespace cwiczenia_Costry
         }
         public static void Main(String[] args)
         {
-            // cw1();
-            // cw1star();
-            // Console.WriteLine(cw2() == true ? "Yesh" : "no");
-            // Console.WriteLine(cw2star() == true ? "Yesh" : "no");
-            // cw3();
-            // Console.WriteLine(cw5("kkkktttrrrrrrrrr"));
-            // Console.WriteLine(cw4());
-            // foreach(var item in cw6())
-            // {
-            //     Console.Write(item + " ");
-            // }
-            // cw7(7);
-            // Console.WriteLine(cw8());
-            // Console.WriteLine(cw8star(10,5));
-            // Console.WriteLine(cw9());
+            cw1();
+            cw1star();
+            Console.WriteLine(cw2() == true ? "Yesh" : "no");
+            Console.WriteLine(cw2star() == true ? "Yesh" : "no");
+            cw3();
+            Console.WriteLine(cw4());
+            Console.WriteLine(cw5("kkkktttrrrrrrrrr"));
+            foreach(var item in cw6())
+            {
+                Console.Write(item + "\t");
+            }
+            Console.WriteLine();
+            cw7(7);
+            Console.WriteLine(cw8());
+            Console.WriteLine(cw8star(10,5));
+            Console.WriteLine(cw9());
             Figura();
-            // Tablica();
-            // TablicaZnaków();
-            // Kalkulator();
+            Kalkulator();
+            Tablica();
+            TablicaZnaków();
         }
     }
 }
