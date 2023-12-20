@@ -31,10 +31,10 @@ public class Zespół
     {
         nazwa = null;
         kierownik = null;
-        członkowie = new List<CzłonekZespołu>(0);
+        członkowie = new List<CzłonekZespołu>();
     }
 
-    public Zespół(string nazwa, KierownikZespołu kierownik)
+    public Zespół(string nazwa, KierownikZespołu kierownik) : this()
     {
         this.nazwa = nazwa;
         this.kierownik = kierownik;
