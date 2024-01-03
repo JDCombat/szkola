@@ -2,7 +2,7 @@
 
 namespace Firma;
 
-public class Zespół
+public class Zespół: ICloneable
 {
     private int liczbaCzłonków;
     private string nazwa;
@@ -112,5 +112,54 @@ public class Zespół
     {
         List<CzłonekZespołu> result = członkowie.FindAll(c => c.dataZapisu.Month == miesiac);
         return result;
+    }
+
+    public object Clone()
+    {
+        Zespół temp = (Zespół)MemberwiseClone();
+        temp.kierownik = (KierownikZespołu)kierownik.Clone();
+        temp.członkowie = new List<CzłonekZespołu>();
+        foreach (var czlonek in this.członkowie)
+        {
+            temp.członkowie.Add(czlonek);
+        }
+        return temp;
+    }
+
+    public void sortuj()
+    {
+        członkowie.Sort((a,b)=>a.CompareTo(b));
+    }
+
+    class PESELComparator : IComparable<string>
+    {
+        public string Pesel { get; }
+
+        public PESELComparator(string pesel)
+        {
+            this.Pesel = pesel;
+        }
+
+        public int CompareTo(string second)
+        {
+            return String.Compare(Pesel, second, StringComparison.Ordinal);
+        }
+    }
+    
+    public void sortujPoPESEL()
+    {
+        członkowie.Sort((a,b)=>new PESELComparator(a.Pesel).CompareTo(b.Pesel));
+    }
+    public bool jestCzlonkiem(CzłonekZespołu second)
+    {
+        foreach (var czlonek in członkowie)
+        {
+            if (czlonek.Equals(second))
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

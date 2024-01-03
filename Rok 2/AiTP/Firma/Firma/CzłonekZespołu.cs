@@ -2,7 +2,7 @@
 
 namespace Firma;
 
-public class CzłonekZespołu: Osoba
+public class CzłonekZespołu: Osoba, ICloneable, IComparable<CzłonekZespołu>
 {
     public DateTime dataZapisu;
     public string funkcja;
@@ -40,5 +40,20 @@ public class CzłonekZespołu: Osoba
     public new string ToString()
     {
         return $"{Imie} {Nazwisko} {DataUrodzenia:yyyy-mm-dd} {Pesel} {Plec} {funkcja} ({dataZapisu:dd-MMM-yyyy})";
+    }
+
+    public object Clone()
+    {
+        CzłonekZespołu temp = (CzłonekZespołu) this.MemberwiseClone();
+        return temp;
+    }
+
+    public int CompareTo(CzłonekZespołu second)
+    {
+        if (this.Nazwisko == second.Nazwisko)
+        {
+            return String.Compare(this.Imie, second.Imie, StringComparison.Ordinal);
+        }
+        return string.Compare(this.Nazwisko, second.Nazwisko, StringComparison.Ordinal);
     }
 }

@@ -33,6 +33,26 @@
             Console.WriteLine();
             it.usunCzlonka("Jan", "Jankowski");
             Console.WriteLine(it.ToString());
+
+            CzłonekZespołu kopia = (CzłonekZespołu)os4.Clone();
+            Console.WriteLine(kopia.ToString());
+            
+            KierownikZespołu kopia2 = (KierownikZespołu)os2.Clone();
+            Console.WriteLine(kopia2.ToString());
+            
+            Console.WriteLine();
+            
+            Zespół kopia3 = (Zespół)it.Clone();
+            Console.WriteLine(kopia3.ToString());
+            
+            // it.sortuj();
+            // Console.WriteLine(it.ToString());
+
+
+            it.sortujPoPESEL();
+            Console.WriteLine(it.ToString());
+
+            Console.WriteLine(it.jestCzlonkiem(os1));
         }
     }
 }

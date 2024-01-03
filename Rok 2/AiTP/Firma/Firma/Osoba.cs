@@ -2,7 +2,7 @@
 
 namespace Firma;
 
-public abstract class Osoba
+public abstract class Osoba: IEquatable<Osoba>
 {
     private string imie;
     private DateTime dataUrodzenia;
@@ -141,5 +141,10 @@ public abstract class Osoba
         Console.WriteLine(10 - (sum % 10));
         if (int.Parse(PESEL[10].ToString()) == 10 - (sum % 10)) return false;
         return true;
+    }
+
+    public bool Equals(Osoba second)
+    {
+        return Pesel == second.Pesel;
     }
 }

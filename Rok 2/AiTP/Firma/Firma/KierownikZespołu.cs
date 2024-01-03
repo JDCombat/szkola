@@ -1,6 +1,6 @@
 ﻿namespace Firma;
 
-public class KierownikZespołu: Osoba
+public class KierownikZespołu: Osoba, ICloneable
 {
     public int doswiadczenie;
 
@@ -26,5 +26,11 @@ public class KierownikZespołu: Osoba
     new public string ToString()
     {
         return $"{Imie} {Nazwisko} {DataUrodzenia:yyyy-mm-dd} {Pesel} {Plec} {doswiadczenie}";
+    }
+
+    public object Clone()
+    {
+        KierownikZespołu temp = (KierownikZespołu)this.MemberwiseClone();
+        return temp;
     }
 }
