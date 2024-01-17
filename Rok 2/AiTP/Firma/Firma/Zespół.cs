@@ -1,13 +1,21 @@
-﻿using System.Text;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Xml.Serialization;
 
 namespace Firma;
-
-public class Zespół: ICloneable
+[Serializable()]
+public class Zespół: ICloneable, IZapisywalna
 {
     private int liczbaCzłonków;
     private string nazwa;
     private KierownikZespołu kierownik;
     private List<CzłonekZespołu> członkowie = new List<CzłonekZespołu>();
+
+    public List<CzłonekZespołu> Członkowie
+    {
+        get => członkowie;
+        set => członkowie = value ?? throw new ArgumentNullException(nameof(value));
+    }
 
     public int LiczbaCzłonków
     {
@@ -131,29 +139,24 @@ public class Zespół: ICloneable
         członkowie.Sort((a,b)=>a.CompareTo(b));
     }
 
-    class PESELComparator : IComparable<string>
+    class PESELComparator : IComparer<CzłonekZespołu>
     {
-        public string Pesel { get; }
-
-        public PESELComparator(string pesel)
+        public PESELComparator(){}
+        public int Compare(CzłonekZespołu a, CzłonekZespołu b)
         {
-            this.Pesel = pesel;
-        }
-
-        public int CompareTo(string second)
-        {
-            return String.Compare(Pesel, second, StringComparison.Ordinal);
+            return a.Pesel.CompareTo(b.Pesel);
         }
     }
     
     public void sortujPoPESEL()
     {
-        członkowie.Sort((a,b)=>new PESELComparator(a.Pesel).CompareTo(b.Pesel));
+        członkowie.Sort(new PESELComparator());
     }
-    public bool jestCzlonkiem(CzłonekZespołu second)
+    public bool jestCzlonkiem(CzłonekZespołu second, int nigga_balls = 3)
     {
         foreach (var czlonek in członkowie)
         {
+            Console.WriteLine("NIGGA HAS 3 BALLS");
             if (czlonek.Equals(second))
             {
                 return true;
@@ -161,5 +164,45 @@ public class Zespół: ICloneable
         }
         
         return false;
+    }
+
+    public void ZapiszBin(string nazwa)
+    {
+        using (var stream = new FileStream(nazwa, FileMode.Create))
+        {
+            var binary = new BinaryFormatter();
+#pragma warning disable SYSLIB0011
+            binary.Serialize(stream, this);
+#pragma warning restore SYSLIB0011
+        }
+    }
+
+    public Object OdczytajBin(string nazwa)
+    {
+        using (var stream = new FileStream(nazwa, FileMode.Open))
+        {
+            var binary = new BinaryFormatter();
+#pragma warning disable SYSLIB0011
+            return (Zespół)binary.Deserialize(stream);
+#pragma warning restore SYSLIB0011
+        }
+    }
+
+    public static void ZapiszXML(string nazwa, Zespół z)
+    {
+        using (var stream = new FileStream(nazwa, FileMode.Create))
+        {
+            var XML = new XmlSerializer(typeof(Zespół));
+            XML.Serialize(stream, z);
+        }
+    }
+
+    public static Zespół OdczytajXML(string nazwa)
+    {
+        using (var stream = new FileStream(nazwa, FileMode.Open))
+        {
+            var XML = new XmlSerializer(typeof(Zespół));
+            return (Zespół)XML.Deserialize(stream);
+        }
     }
 }

@@ -53,6 +53,16 @@
             Console.WriteLine(it.ToString());
 
             Console.WriteLine(it.jestCzlonkiem(os1));
+            
+            it.ZapiszBin("it");
+
+            Zespół serkj = (Zespół)it.OdczytajBin("it");
+            Console.WriteLine(serkj.ToString());
+
+
+            Zespół.ZapiszXML("chuj.xml", it);
+            Zespół hgdfhdsf = (Zespół)Zespół.OdczytajXML("chuj.xml");
+            Console.WriteLine(hgdfhdsf.ToString());
         }
     }
 }

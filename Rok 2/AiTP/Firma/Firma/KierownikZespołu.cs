@@ -1,9 +1,21 @@
 ﻿namespace Firma;
+[Serializable()]
 
 public class KierownikZespołu: Osoba, ICloneable
 {
     public int doswiadczenie;
 
+    public int Doswiadczenie
+    {
+        get => doswiadczenie;
+        set => doswiadczenie = value;
+    }
+
+
+    public KierownikZespołu()
+    {
+        
+    }
     public KierownikZespołu(int doswiadczenie)
     {
         this.doswiadczenie = doswiadczenie;
@@ -23,6 +35,9 @@ public class KierownikZespołu: Osoba, ICloneable
     {
         this.doswiadczenie = doswiadczenie;
     }
+
+
+
     new public string ToString()
     {
         return $"{Imie} {Nazwisko} {DataUrodzenia:yyyy-mm-dd} {Pesel} {Plec} {doswiadczenie}";

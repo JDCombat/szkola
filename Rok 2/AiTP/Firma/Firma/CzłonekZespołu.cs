@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 
 namespace Firma;
+[Serializable()]
 
 public class CzłonekZespołu: Osoba, ICloneable, IComparable<CzłonekZespołu>
 {

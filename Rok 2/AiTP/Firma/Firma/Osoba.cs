@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 
 namespace Firma;
+[Serializable()]
 
 public abstract class Osoba: IEquatable<Osoba>
 {
