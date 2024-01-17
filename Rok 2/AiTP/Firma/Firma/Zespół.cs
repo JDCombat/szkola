@@ -156,7 +156,6 @@ public class Zespół: ICloneable, IZapisywalna
     {
         foreach (var czlonek in członkowie)
         {
-            Console.WriteLine("NIGGA HAS 3 BALLS");
             if (czlonek.Equals(second))
             {
                 return true;
