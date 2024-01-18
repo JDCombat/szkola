@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        label a {
+        margin-bottom: 1em;
+        display: inline-block;      /* Dzięki temu punktor zostanie obok tekstu linku */
+        color: black;
+        text-decoration: none;
+        font-size: 2vw;     /* Przydatne może się okazać korzystanie z czcionek responsywnych */
+    }
+
+    /* Dopasowanie wielkości punktora do linku */
+    ::marker {      
+        font-size: 2vw;
+        color: black;
+    }
+    label .menu {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        right: -100px;
+        top: -100px;
+        z-index: 100;
+        background: #ff9000;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0 #ff9000, 0 0 0 0 #ff9000;
+        transition: .5s ease-in-out;
+        cursor: pointer;     /* Fancy kursor */   /* Jak się później okaże, to jest tło naszej planszy menu */ 
+    }
+    label input { display: none; }
+    label .hamburger {
+        position: absolute;
+        top: 140px;     /* Brutalna rzeczywistość wymaga, aby pozycja hamburgera była ustawiona manualnie. */
+        left: 45px;
+        width: 30px;
+        height: 2px;
+        background: black;
+        display: inline-block;
+        -webkit-transform-origin: center;
+        transform-origin: center;
+        -webkit-transition: .5s ease-in-out;
+        transition: .5s ease-in-out;
+    }
+    
+    label .hamburger:after, label .hamburger:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: black;
+        -webkit-transition: .5s ease-in-out;
+        transition: .5s ease-in-out;
+    }
+    
+    label .hamburger:before { top: -10px; }
+    label .hamburger:after { bottom: -10px; }
+    label ul {
+        display: none;  /* Bez tego będzie się dało kliknąć w linki nawet, gdy będą niewidoczne */
+        opacity: 0;     /* Opacity jest potrzebne do animacji, więc go nie usuwajcie */
+    }
+
+    /* Kliknięcie w menu zmieni je z kółka w kwadrat i stworzy całą planszę menu */
+
+    label input:checked + .menu {
+        box-shadow: 0 0 0 100vw #ff9000, 0 0 0 100vh #ff9000;   /* Tworzymy nierozmywający się cień o wielkości viewporta  */
+        border-radius: 0;   /* Kółko menu staje się kwadratem */
+    }
+        label ul {
+        z-index: 200;   /* Z-index większy od z-indexa menu */
+        position: absolute;
+        top: 35%;   /* Jak coś wchodzi ze sobą w konflikt to można dać 35vh */
+        left: 50%;
+        -webkit-transform: translateX(-100%);   /* Wartość translateX'ów powinniśmy dostosować do wielkości tekstu linków */
+        transform: translateX(-100%);
+        display: none;
+        opacity: 0;
+        -webkit-transition: .5s 0s ease-in-out;
+        transition: .5s 0s ease-in-out;
+    }
+
+    /* Linki wreszcie widoczne! (jedynie po kliknięciu w burgera) */
+    label input:checked + .menu + ul { 
+        display: inline-block;
+        opacity: 1; 
+        animation: ul-animation 0.5s;
+    }
+    label input:checked + .menu .hamburger {
+        transform: rotate(45deg);
+    }
+
+    label input:checked + .menu .hamburger:after {
+        transform: rotate(90deg);
+        bottom: 0;
+    }
+
+    label input:checked + .menu .hamburger:before {
+        transform: rotate(90deg);
+        top: 0;
+    }
+    @keyframes ul-animation {
+        0% { opacity: 0; }
+      
+        50% {
+          display: inline-block;
+          opacity: 0;
+        }
+      
+        100% { opacity: 1; }
+    }
+    
+    @media only screen and (max-width: 1200px) {
+        label a, ::marker {
+            font-size: 5vw;
+        }
+
+        /* Opcjonalne w zależności od wielkości tekstu linków */
+
+        label ul {
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <label>
+            <input type="checkbox">
+            <span class="menu">
+                <span class="hamburger"></span>
+            </span>
+            <ul>
+                <li><a href="amogum.html">Amogum</a></li>
+                <li><a href="uwu.html">UwU</a></li>
+                <li><a href="nya.html">Nya</a></li>
+            </ul>
+        </label>
+    </header>
+</body>
+</html>

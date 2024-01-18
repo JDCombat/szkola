@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                        header {
+                            width: 100%;
+                            height: 80px;
+                            background: rgb(40, 40, 40);
+                            color: white;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-bottom: 2px ridge #ff9000;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            z-index: 10;
+                        }
+
+                        header > .checkbox {
+                            position: absolute;
+                            display: block;
+                            height: 32px;
+                            width: 32px;
+                            top: 20px;
+                            left: 20px;
+                            z-index: 3;
+                            opacity: 0;
+                            cursor: pointer;
+                        }
+                          
+                        .hamburger-lines-outer {
+                            display: block;
+                            height: 32px;
+                            width: 32px;
+                            position: absolute;
+                            top: 20px;
+                            left: 20px;
+                            z-index: 1;
+                        }
+                          
+                        .hamburger-lines-inner {
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                        }
+                          
+                        .line {
+                            display: block;
+                            height: 4px;
+                            width: 100%;
+                            border-radius: 10px;
+                            background: #ff9000;
+                            position: absolute;
+                        }
+                          
+                        /* Animacje + position */
+                        .line1 {
+                            top: 4px;
+                            left: 0px;
+                            transition: all 0.4s ease-in-out;
+                        }
+                          
+                        .line2 {
+                            top: 14px;
+                            left: 0px;
+                            transition: all 0.2s ease-in-out;
+                        }
+                          
+                        .line3 {
+                            top: 24px;
+                            left: 0px;
+                            transition: all 0.4s ease-in-out;
+                        }
+                          
+                        .checkbox:checked ~.hamburger-lines-outer .line1 {
+                            top: 14px;
+                            transform: rotate(45deg);
+                        }
+                          
+                        .checkbox:checked ~.hamburger-lines-outer .line2 {
+                            transform: scaleY(0);
+                        }
+                          
+                        .checkbox:checked ~.hamburger-lines-outer .line3 {
+                            top: 14px;
+                            transform: rotate(-45deg);
+                        }
+                          ul {
+                            display: block;
+                        }
+                        
+                        li {
+                            list-style: none;
+                        }
+                        
+                        .menu-items a {
+                            text-decoration: none;
+                            color: white;
+                            font-size: 24px;
+                            padding: 10px;
+                        }
+                        
+                        header .menu-items {
+                            position: absolute;
+                            top: 80px;
+                            left: 0px;
+                            z-index: 1;
+                            height: 100vh;
+                            width: 100%;
+                            margin: 0;
+                            padding-top: 20px;
+                            transform: translate(-150%);
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+                            background-color: #ff9000;
+                            transition: transform 0.5s ease-in-out;
+                        }
+                        
+                        header .menu-items li {
+                            margin-bottom: 10px;
+                            width: 25%;
+                            border-bottom: 2px solid white;
+                            padding: 5px;
+                        }
+                        
+                        header .checkbox:checked ~.menu-items {
+                            transform: translate(0);
+                        }
+                        
+    </style>
+</head>
+<body>
+    <header>       
+        <input class="checkbox" type="checkbox" name="" id="" />
+        <div class="hamburger-lines-outer">
+            <div class="hamburger-lines-inner">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+        </div>
+    
+        <ul class="menu-items">
+            <li><a class="menu-item" href="../Responsive Menu/responsive-menu.html">Responsive Menu</a></li>
+            <li><a class="menu-item" href=" ">Centered Menu</a></li>
+            <li><a class="menu-item" href="../Morphing Menu/morphing-menu.html">Morphing Menu</a></li>
+        </ul>
+    
+    </header> 
+</body>
+</html>
