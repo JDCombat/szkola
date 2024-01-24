@@ -1,0 +1,27 @@
+﻿<Window x:Class="ZespolGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZespolGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="CornflowerBlue"/>
+                <GradientStop Color="#FFBAFFC5" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label x:Name="lName" Content="Nazwa" HorizontalAlignment="Left" Height="31" Margin="31,64,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="31" Margin="168,64,0,0" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="585"/>
+        <Label x:Name="lManager" Content="Kierownik" HorizontalAlignment="Left" Height="31" Margin="31,120,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="tbManager" HorizontalAlignment="Left" Height="31" Margin="168,120,0,0" TextWrapping="Wrap" Text="Kierownik" VerticalAlignment="Top" Width="448"/>
+        <Button x:Name="bChange" Content="Zmień" HorizontalAlignment="Left" Height="31" Margin="634,120,0,0" VerticalAlignment="Top" Width="119" Background="#FF6DCE97"/>
+        <Label x:Name="lMembers" Content="Członkowie zespołu" HorizontalAlignment="Left" Height="26" Margin="31,171,0,0" VerticalAlignment="Top" Width="137"/>
+        <ListBox x:Name="lstMembers" HorizontalAlignment="Left" Height="216" Margin="168,197,0,0" VerticalAlignment="Top" Width="585" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="34" Margin="31,217,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97"/>
+        <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="34" Margin="31,256,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97"/>
+
+    </Grid>
+</Window>
