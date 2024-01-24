@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;box-sizing: border-box;}
+         .hamburger-menu {
+                    display: flex;  
+                    flex-direction: row;        /* Chcemy żeby elementy było okok siebie */
+                    align-items: center;
+                    justify-content: flex-end;      /* Ustawiamy tym nasze przyszłe miejsce burgera */
+                    background: linear-gradient(to right, cornflowerblue, dimgray);
+                    color: #fff;
+                    height: 50px;       /* Wielkość naszego navbara */
+                    padding: 1em;
+                }
+
+                 .menu {         
+                    display: flex;
+                    flex-direction: column;
+                    list-style-type: none;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;        /* Chcemy aby nasze menu zajmowało całą stronę na szerokość */
+                    position: absolute;     
+                    margin-top: 50px;       /* Ustawiamy aby nasze menu snajdowało się tuż pod głównym divem */
+                    top: 0;
+                    left: 0;
+                  }
+                  a {
+                    text-decoration: none;
+                    color: white;
+                    }
+
+                .menu > li {        /* Stylujemy nasze li */
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;        /* Aby zajmowało całą szerokość */
+                    background-color: #222;
+                  }
+                .menu-button-container {
+                display: flex;
+                height: 100%;
+                width: 30px;
+                cursor: pointer;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+              }
+              #menu-toggle{
+                display: none;      /* Chowamy naszego checkboxa */
+            }
+            .menu-button,
+            .menu-button::before,
+            .menu-button::after {       /* Wielkość, kolor i pozycja hamburgera */
+                display: block;
+                background-color: #fff;
+                position: absolute;
+                height: 6px;
+                width: 50px;
+                border-radius: 4px;
+                transition: transform 1s, background 1s, border 1s, margin-top 1s,
+                  margin-left 1s, width 1s;
+            }
+            
+            .menu-button::before {          /* Pozycja górnej kreski */
+                content: "";
+                margin-top: -12px;
+            }
+            
+            .menu-button::after {           /* Pozycja dolnej kreski */
+                content: "";
+                margin-top: 12px;
+            }
+            #menu-toggle ~ .menu li {
+                height: 0;      /* Zerujemy wysokość */
+                border: 0;      /* Zerujemy border */
+                font-size: 0;       /* Zerujemy wielkość czcionki */
+                transition: height 1.5s, border 1.5s, font-size 1.5s;
+            }
+            #menu-toggle:checked ~ .menu li {
+                border: 1px solid #333;         /* Ustawiamy wybrane wielkości */
+                height: 2.5em;
+                font-size: 1em;
+                transition: height 1.5s, border 1.5s, font-size 1.5s;   
+            }
+            #menu-toggle:checked + .menu-button-container .menu-button::before {
+                margin-top: -9px;
+                margin-left: 24px;
+                width: 30px;
+                transform: rotate(45deg);
+                transition: transform 1s, margin-top 1s, margin-left 1s, width 1.5s;
+              }
+              
+              #menu-toggle:checked + .menu-button-container .menu-button {
+                transform: rotate(-90deg);      /*Opacity środkowej kreski na 0 aby była niewidoczna, w tym przypadku nie można użyć display none, ponieważ pozostałe kreski też znikną */
+                transition: rotate 1s;
+              }
+              
+              #menu-toggle:checked + .menu-button-container .menu-button::after {
+                margin-top: 9px;
+                margin-left: 24px;
+                width: 30px;
+                transform: rotate(-45deg);   /* Obracamy tak aby utworzyła drugie z ramion X, można dodawać co 180 stopni aby wykonała więcej obrotów */
+                transition: transform 1s, margin-top 1s, margin-left 1s, width 1.5s;
+              }         
+
+
+    </style>
+</head>
+<body>
+    <div class="hamburger-menu">
+        <input id="menu-toggle" type="checkbox">
+        <label class="menu-button-container" for="menu-toggle">
+            <div class="menu-button"></div>
+        </label> 
+        <ul class="menu">
+            <li><a href="need.html">need</a></li>
+            <li><a href="more.html">more</a></li>
+            <li><a href="bullets.html">bullets</a></li>
+        </ul>
+    </div>  
+</body>
+</html>
