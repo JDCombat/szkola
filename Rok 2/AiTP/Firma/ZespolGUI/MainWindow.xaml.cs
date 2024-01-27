@@ -27,7 +27,7 @@ namespace ZespolGUI
         {
             Zespół zespol = new Zespół();
             InitializeComponent();
-            zespol = (Zespół)Zespół.OdczytajXML("zespol.XML");
+            zespol = (Zespół)Zespół.OdczytajXML("..\\..\\..\\..\\Firma\\bin\\Debug\\net7.0\\zespol.XML");
             lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
             tbName.Text = zespol.Nazwa;
             tbManager.Text = zespol.Kierownik.ToString();

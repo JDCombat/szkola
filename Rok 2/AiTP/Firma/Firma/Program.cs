@@ -60,8 +60,8 @@
             Console.WriteLine(serkj.ToString());
 
 
-            Zespół.ZapiszXML("chuj.xml", it);
-            Zespół hgdfhdsf = (Zespół)Zespół.OdczytajXML("chuj.xml");
+            Zespół.ZapiszXML("zespol.xml", it);
+            Zespół hgdfhdsf = (Zespół)Zespół.OdczytajXML("zespol.xml");
             Console.WriteLine(hgdfhdsf.ToString());
         }
     }
