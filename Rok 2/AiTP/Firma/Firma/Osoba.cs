@@ -13,6 +13,12 @@ public abstract class Osoba: IEquatable<Osoba>
     
     public Plcie Plec => plec;
     
+
+    public Plcie Plcie
+    {
+        get => plec;
+        set => plec = value;
+    }
     
     public string Imie
     {
@@ -43,6 +49,7 @@ public abstract class Osoba: IEquatable<Osoba>
         get => nr_tel;
         set => nr_tel = value ?? throw new ArgumentNullException(nameof(value));
     }
+
 
     public void format()
     {

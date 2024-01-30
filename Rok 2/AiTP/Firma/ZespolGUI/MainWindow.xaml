@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZespolGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,15 +13,28 @@
                 <GradientStop Color="#FFBAFFC5" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label x:Name="lName" Content="Nazwa" HorizontalAlignment="Left" Height="31" Margin="31,18,0,0" VerticalAlignment="Top" Width="112"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="31" Margin="168,18,0,0" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="585"/>
+        <DockPanel Grid.ColumnSpan="3">
+            <Menu DockPanel.Dock="Top" Background="#FFBAFFC5">
+                <MenuItem Header="_Plik">
+                    <MenuItem Header="_Otwórz" Click="MenuOtworz_Click"/>
+                    <MenuItem Header="_Zapisz" Click="MenuZapisz_Click"/>
+                    <MenuItem Header="_Wyjdź" Click="MenuWyjdz_Click"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel>
+            </StackPanel>
+        </DockPanel>
+        
+        <Label x:Name="lName" Content="Nazwa" HorizontalAlignment="Left" Height="31" Margin="31,27,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="31" Margin="168,27,0,0" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="585" TextChanged="tbName_TextChanged"/>
         <Label x:Name="lManager" Content="Kierownik" HorizontalAlignment="Left" Height="31" Margin="31,74,0,0" VerticalAlignment="Top" Width="112"/>
-        <TextBox x:Name="tbManager" HorizontalAlignment="Left" Height="31" Margin="168,74,0,0" TextWrapping="Wrap" Text="Kierownik" VerticalAlignment="Top" Width="448"/>
-        <Button x:Name="bChange" Content="Zmień" HorizontalAlignment="Left" Height="31" Margin="634,74,0,0" VerticalAlignment="Top" Width="119" Background="#FF6DCE97"/>
+        <TextBox x:Name="tbManager" HorizontalAlignment="Left" Height="31" Margin="168,74,0,0" TextWrapping="Wrap" Text="Kierownik" VerticalAlignment="Top" Width="448" TextChanged="tbManager_TextChanged"/>
+        <Button x:Name="bChange" Content="Zmień" HorizontalAlignment="Left" Height="31" Margin="634,74,0,0" VerticalAlignment="Top" Width="119" Background="#FF6DCE97" Click="bChange_Click"/>
         <Label x:Name="lMembers" Content="Członkowie zespołu" HorizontalAlignment="Left" Height="26" Margin="31,125,0,0" VerticalAlignment="Top" Width="137"/>
         <ListBox x:Name="lstMembers" HorizontalAlignment="Left" Height="216" Margin="168,151,0,0" VerticalAlignment="Top" Width="585" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="34" Margin="31,170,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97"/>
-        <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="34" Margin="31,210,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97"/>
+        <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="34" Margin="31,170,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97" Click="bAdd_Click"/>
+        <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="34" Margin="31,210,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97" Click="bRemove_Click"/>
+        <Button x:Name="bChangeMember" Content="Zmień" HorizontalAlignment="Left" Height="34" Margin="31,249,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97" Click="bChangeMember_Click"/>
 
     </Grid>
 </Window>

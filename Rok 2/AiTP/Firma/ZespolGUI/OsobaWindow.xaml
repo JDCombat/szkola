@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZespolGUI"
         mc:Ignorable="d"
-        Title="OsobaWindow" Height="250" Width="400">
+        Title="OsobaWindow" Height="300" Width="400">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -26,7 +26,7 @@
         <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="24" Margin="119,59,0,0" TextWrapping="Wrap" Text="Imie" VerticalAlignment="Top" Width="230"/>
         <TextBox x:Name="tbSurname" HorizontalAlignment="Left" Height="24" Margin="119,88,0,0" TextWrapping="Wrap" Text="Nazwisko" VerticalAlignment="Top" Width="230"/>
         <TextBox x:Name="tbDate" HorizontalAlignment="Left" Height="24" Margin="119,117,0,0" TextWrapping="Wrap" Text="DataUrodzenia" VerticalAlignment="Top" Width="230"/>
-        <Button x:Name="bCancel" Content="Anuluj" HorizontalAlignment="Left" Height="25" Margin="221,199,0,0" VerticalAlignment="Top" Width="128"/>
-        <Button x:Name="bSave" Content="Zatwierdź" HorizontalAlignment="Left" Height="25" Margin="56,199,0,0" VerticalAlignment="Top" Width="128"/>
+        <Button x:Name="bCancel" Content="Anuluj" HorizontalAlignment="Left" Height="25" Margin="221,199,0,0" VerticalAlignment="Top" Width="128" Click="bCancel_Click"/>
+        <Button x:Name="bSave" Content="Zatwierdź" HorizontalAlignment="Left" Height="25" Margin="56,199,0,0" VerticalAlignment="Top" Width="128" Click="bSave_Click"/>
     </Grid>
 </Window>

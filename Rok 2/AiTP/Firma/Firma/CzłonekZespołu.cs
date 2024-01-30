@@ -38,9 +38,9 @@ public class CzłonekZespołu: Osoba, ICloneable, IComparable<CzłonekZespołu>
         this.funkcja = funkcja;
     }
 
-    public new string ToString()
+    public override string ToString()
     {
-        return $"{Imie} {Nazwisko} {DataUrodzenia:yyyy-mm-dd} {Pesel} {Plec} {funkcja} ({dataZapisu:dd-MMM-yyyy})";
+        return $"{Imie} {Nazwisko} {DataUrodzenia:yyyy-MM-dd} {Pesel} {Plec} {funkcja} ({dataZapisu:dd-MMM-yyyy})";
     }
 
     public object Clone()

@@ -14,7 +14,7 @@
             KierownikZespołu os2 = new KierownikZespołu("Jan", "Jankowski", "1993-03-15", "92031507772", Plcie.M, 5);
             CzłonekZespołu os3 = new CzłonekZespołu("Witold", "Adamski", "22.10.1992", "92102266738", Plcie.M,
                 "01.01.2022", "sekretarz");
-            CzłonekZespołu os4 = new CzłonekZespołu("Jan", "Jankowski", "22.10.1992", "92031532652", Plcie.M,
+            CzłonekZespołu os4 = new CzłonekZespołu("Jan", "Jankowski", "25.12.1984", "92031532652", Plcie.M,
                 "01.01.2020", "sekretarz");
             
             Console.WriteLine(os1.ToString());

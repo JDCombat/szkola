@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,15 +23,126 @@ namespace ZespolGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        public Zespół zespol;
+        public bool changed;
         public MainWindow()
         {
-            Zespół zespol = new Zespół();
             InitializeComponent();
-            zespol = (Zespół)Zespół.OdczytajXML("..\\..\\..\\..\\Firma\\bin\\Debug\\net7.0\\zespol.XML");
-            lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
-            tbName.Text = zespol.Nazwa;
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.Filter = "XML Files (*.xml)|*.xml";
+            dlg.DefaultExt = "xml";
+            dlg.AddExtension = true;
+            dlg.FileName = "zespol.xml";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                zespol = Zespół.OdczytajXML(dlg.FileName);
+                lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+                tbName.Text = zespol.Nazwa;
+                tbManager.Text = zespol.Kierownik.ToString();
+            }
+            changed = false;
+        }
+
+        private void bChange_Click(object sender, RoutedEventArgs e)
+        {
+            OsobaWindow okno = new OsobaWindow(zespol.Kierownik);
+            okno.ShowDialog();
             tbManager.Text = zespol.Kierownik.ToString();
+        }
+
+        private void bAdd_Click(object sender, RoutedEventArgs e)
+        {
+            CzłonekZespołu cz = new CzłonekZespołu();
+            OsobaWindow okno = new OsobaWindow(cz);
+            var result = okno.ShowDialog();
+            if (result == true)
+            {
+                zespol.dodajCzłonka(cz);
+                lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+            }
+            changed = true;
+        }
+
+        private void bRemove_Click(object sender, RoutedEventArgs e)
+        {
+            int zaznaczony = lstMembers.SelectedIndex;
+            zespol.Członkowie.RemoveAt(zaznaczony);
+            lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+        }
+        private void MenuZapisz_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.Filter = "XML Files (*.xml)|*.xml";
+            dlg.DefaultExt = "xml";
+            dlg.AddExtension = true;
+            dlg.FileName = "zespol";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                zespol.Nazwa = tbName.Text;
+                Zespół.ZapiszXML(filename, zespol);
+            }
+        }
+        private void MenuOtworz_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.Filter = "XML Files (*.xml)|*.xml";
+            dlg.DefaultExt = "xml";
+            dlg.AddExtension = true;
+            dlg.FileName = "zespol.xml";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                zespol = Zespół.OdczytajXML(dlg.FileName);
+                lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+                tbName.Text = zespol.Nazwa;
+                tbManager.Text = zespol.Kierownik.ToString();
+            }
+        }
+
+
+
+        private void MenuWyjdz_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void tbName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            changed = true;
+        }
+
+        private void tbManager_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            changed = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (changed)
+            {
+                var result = MessageBox.Show("Zapisać plik?", "Zapisać plik?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    MenuZapisz_Click(sender, null);
+                }
+            }
+        }
+
+        private void bChangeMember_Click(object sender, RoutedEventArgs e)
+        {
+            var index = lstMembers.SelectedIndex;
+            var cz = zespol.Członkowie.ElementAt(index);
+            OsobaWindow okno = new OsobaWindow(cz);
+
+            var result = okno.ShowDialog();
+            if (result == true)
+            {
+
+            }
+            changed = true;
         }
     }
 }

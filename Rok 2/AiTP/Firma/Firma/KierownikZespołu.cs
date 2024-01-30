@@ -40,7 +40,7 @@ public class KierownikZespołu: Osoba, ICloneable
 
     new public string ToString()
     {
-        return $"{Imie} {Nazwisko} {DataUrodzenia:yyyy-mm-dd} {Pesel} {Plec} {doswiadczenie}";
+        return $"{Imie} {Nazwisko} {DataUrodzenia:yyyy-MM-dd} {Pesel} {Plec} {doswiadczenie}";
     }
 
     public object Clone()
