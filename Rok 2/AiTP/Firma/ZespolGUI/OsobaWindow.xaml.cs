@@ -38,6 +38,8 @@ namespace ZespolGUI
                 tbSurname.Text = osoba.Nazwisko;
                 tbDate.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
                 cbGender.Text = ((osoba.Plec) == Plcie.K) ? "Kobieta" : "Mężczyzna";
+                lChange.Content = "Doświadczenie";
+                tbChange.Text = ((KierownikZespołu)osoba).doswiadczenie.ToString();
             }
             if (_osoba is CzłonekZespołu)
             {
@@ -46,6 +48,8 @@ namespace ZespolGUI
                 tbSurname.Text = osoba.Nazwisko;
                 tbDate.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
                 cbGender.Text = ((osoba.Plec) == Plcie.K) ? "Kobieta" : "Mężczyzna";
+                lChange.Content = "Funkcja";
+                tbChange.Text = ((CzłonekZespołu)osoba).funkcja;
             }
         }
 
@@ -56,13 +60,13 @@ namespace ZespolGUI
                 _osoba.Pesel = tbPESEL.Text;
                 _osoba.Imie = tbName.Text;
                 _osoba.Nazwisko = tbSurname.Text;
+                _osoba.Plcie = (cbGender.Text == "Kobieta") ? Plcie.K : Plcie.M;
                 string[] fdate = { "yyyy-MM-dd", "yyyy/MM/dd", "MM/dd/yy", "dd-MMM-yy", "dd.MM.yyyy", "dd-MMM-yyyy"};
                 var result = DateTime.TryParseExact(tbDate.Text, fdate, null, DateTimeStyles.None, out DateTime
                 date);
-                if (result)
+                if (result == true)
                 {
                     _osoba.DataUrodzenia = date;
-                    _osoba.Plcie = (cbGender.Text == "kobieta") ? Plcie.K : Plcie.M;
                 }
                 else
                 {
@@ -73,7 +77,14 @@ namespace ZespolGUI
                         var message = MessageBox.Show("Data się nie zgadza", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                
+                if (_osoba is KierownikZespołu)
+                {
+                    ((KierownikZespołu)_osoba).doswiadczenie = int.Parse(tbChange.Text);
+                }
+                else if(_osoba is CzłonekZespołu)
+                {
+                    ((CzłonekZespołu)_osoba).funkcja = tbChange.Text;
+                }
             }
             DialogResult = true;
         }

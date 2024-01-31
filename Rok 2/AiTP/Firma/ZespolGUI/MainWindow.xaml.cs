@@ -99,6 +99,7 @@ namespace ZespolGUI
                 lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
                 tbName.Text = zespol.Nazwa;
                 tbManager.Text = zespol.Kierownik.ToString();
+                changed = false;
             }
         }
 
@@ -134,15 +135,23 @@ namespace ZespolGUI
         private void bChangeMember_Click(object sender, RoutedEventArgs e)
         {
             var index = lstMembers.SelectedIndex;
-            var cz = zespol.Członkowie.ElementAt(index);
-            OsobaWindow okno = new OsobaWindow(cz);
-
-            var result = okno.ShowDialog();
-            if (result == true)
+            if (index == -1)
             {
-
+                MessageBox.Show("Zaznacz członka", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            changed = true;
+            else
+            {
+                var cz = zespol.Członkowie.ElementAt(index);
+                OsobaWindow okno = new OsobaWindow(cz);
+
+                var result = okno.ShowDialog();
+                if (result == true)
+                {
+                    zespol.Członkowie[index] = cz;
+                    lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+                }
+                changed = true;
+            }
         }
     }
 }

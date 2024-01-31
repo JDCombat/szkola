@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZespolGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing" ResizeMode="CanMinimize">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -28,7 +28,7 @@
         <Label x:Name="lName" Content="Nazwa" HorizontalAlignment="Left" Height="31" Margin="31,27,0,0" VerticalAlignment="Top" Width="112"/>
         <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="31" Margin="168,27,0,0" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="585" TextChanged="tbName_TextChanged"/>
         <Label x:Name="lManager" Content="Kierownik" HorizontalAlignment="Left" Height="31" Margin="31,74,0,0" VerticalAlignment="Top" Width="112"/>
-        <TextBox x:Name="tbManager" HorizontalAlignment="Left" Height="31" Margin="168,74,0,0" TextWrapping="Wrap" Text="Kierownik" VerticalAlignment="Top" Width="448" TextChanged="tbManager_TextChanged"/>
+        <TextBox x:Name="tbManager" HorizontalAlignment="Left" Height="31" Margin="168,74,0,0" TextWrapping="Wrap" Text="Kierownik" VerticalAlignment="Top" Width="448" TextChanged="tbManager_TextChanged" Focusable="False"/>
         <Button x:Name="bChange" Content="Zmień" HorizontalAlignment="Left" Height="31" Margin="634,74,0,0" VerticalAlignment="Top" Width="119" Background="#FF6DCE97" Click="bChange_Click"/>
         <Label x:Name="lMembers" Content="Członkowie zespołu" HorizontalAlignment="Left" Height="26" Margin="31,125,0,0" VerticalAlignment="Top" Width="137"/>
         <ListBox x:Name="lstMembers" HorizontalAlignment="Left" Height="216" Margin="168,151,0,0" VerticalAlignment="Top" Width="585" d:ItemsSource="{d:SampleData ItemCount=5}"/>
