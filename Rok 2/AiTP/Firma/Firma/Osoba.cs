@@ -53,11 +53,8 @@ public abstract class Osoba: IEquatable<Osoba>
 
     public void format()
     {
-        imie.ToLower();
-        char.ToUpper(imie[0]);
-        
-        Nazwisko.ToLower();
-        char.ToUpper(Nazwisko[0]);
+        imie = imie.Substring(0, 1).ToUpper() + imie.Substring(1);
+        Nazwisko = Nazwisko.Substring(0, 1).ToUpper() + Nazwisko.Substring(1);
     }
     public Osoba()
     {
@@ -102,11 +99,13 @@ public abstract class Osoba: IEquatable<Osoba>
     
     public int Wiek()
     {
-        DateTime brithday = new DateTime(DateTime.Now.Year, dataUrodzenia.Month, dataUrodzenia.Day);
-        bool whoIsTheBirthdayBoy = DateTime.Now < brithday;
-        return whoIsTheBirthdayBoy
-            ? (DateTime.Now.Year-dataUrodzenia.Year)
-            : (DateTime.Now.Year-dataUrodzenia.Year + 1);
+        DateTime now = DateTime.Now;
+        int age = now.Year - dataUrodzenia.Year;
+
+        if (now.Month < dataUrodzenia.Month || (now.Month == dataUrodzenia.Month && now.Day < dataUrodzenia.Day))
+            age--;
+
+        return age;
     }
     
     public override string ToString()

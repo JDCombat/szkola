@@ -59,9 +59,16 @@ namespace ZespolGUI
         private void bRemove_Click(object sender, RoutedEventArgs e)
         {
             int zaznaczony = lstMembers.SelectedIndex;
-            zespol.Członkowie.RemoveAt(zaznaczony);
-            lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
-            changed = true;
+            if (zaznaczony == -1)
+            {
+                MessageBox.Show("Zaznacz członka", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                zespol.Członkowie.RemoveAt(zaznaczony);
+                lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+                changed = true;
+            }
         }
         private void MenuZapisz_Click(object sender, RoutedEventArgs e)
         {
@@ -128,7 +135,7 @@ namespace ZespolGUI
 
         private void bChangeMember_Click(object sender, RoutedEventArgs e)
         {
-            var index = lstMembers.SelectedIndex;
+            int index = lstMembers.SelectedIndex;
             if (index == -1)
             {
                 MessageBox.Show("Zaznacz członka", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
