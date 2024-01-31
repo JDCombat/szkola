@@ -104,8 +104,8 @@ public abstract class Osoba: IEquatable<Osoba>
         DateTime brithday = new DateTime(DateTime.Now.Year, dataUrodzenia.Month, dataUrodzenia.Day);
         bool whoIsTheBirthdayBoy = DateTime.Now < brithday;
         return whoIsTheBirthdayBoy
-            ? (DateTime.Now.Year-dataUrodzenia.Year + 1)
-            : (DateTime.Now.Year-dataUrodzenia.Year);
+            ? (DateTime.Now.Year-dataUrodzenia.Year)
+            : (DateTime.Now.Year-dataUrodzenia.Year + 1);
     }
     
     public override string ToString()
