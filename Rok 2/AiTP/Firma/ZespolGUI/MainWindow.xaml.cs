@@ -28,19 +28,10 @@ namespace ZespolGUI
         public MainWindow()
         {
             InitializeComponent();
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.Filter = "XML Files (*.xml)|*.xml";
-            dlg.DefaultExt = "xml";
-            dlg.AddExtension = true;
-            dlg.FileName = "zespol.xml";
-            Nullable<bool> result = dlg.ShowDialog();
-            if (result == true)
-            {
-                zespol = Zespół.OdczytajXML(dlg.FileName);
-                lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
-                tbName.Text = zespol.Nazwa;
-                tbManager.Text = zespol.Kierownik.ToString();
-            }
+            zespol = Zespół.OdczytajXML("zespol.xml");
+            lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+            tbName.Text = zespol.Nazwa;
+            tbManager.Text = zespol.Kierownik.ToString();
             changed = false;
         }
 
