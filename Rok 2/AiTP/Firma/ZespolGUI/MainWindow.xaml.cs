@@ -49,6 +49,7 @@ namespace ZespolGUI
             OsobaWindow okno = new OsobaWindow(zespol.Kierownik);
             okno.ShowDialog();
             tbManager.Text = zespol.Kierownik.ToString();
+            changed = true;
         }
 
         private void bAdd_Click(object sender, RoutedEventArgs e)
@@ -60,8 +61,8 @@ namespace ZespolGUI
             {
                 zespol.dodajCzłonka(cz);
                 lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+                changed = true;
             }
-            changed = true;
         }
 
         private void bRemove_Click(object sender, RoutedEventArgs e)
@@ -69,6 +70,7 @@ namespace ZespolGUI
             int zaznaczony = lstMembers.SelectedIndex;
             zespol.Członkowie.RemoveAt(zaznaczony);
             lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
+            changed = true;
         }
         private void MenuZapisz_Click(object sender, RoutedEventArgs e)
         {

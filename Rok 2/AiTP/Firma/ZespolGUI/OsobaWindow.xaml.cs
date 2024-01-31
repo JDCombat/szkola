@@ -58,6 +58,17 @@ namespace ZespolGUI
             if (tbPESEL.Text != "" && tbName.Text != "" && tbSurname.Text != "")
             {
                 _osoba.Pesel = tbPESEL.Text;
+                if(_osoba.checkPESEL() == false)
+                {
+                    try
+                    {
+                        throw new Exception("Pesel się nie zgadza");
+                    }
+                    catch (Exception ex)
+                    {
+                        var message = MessageBox.Show("Podaj prawidłowy numer PESEL", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
                 _osoba.Imie = tbName.Text;
                 _osoba.Nazwisko = tbSurname.Text;
                 _osoba.Plcie = (cbGender.Text == "Kobieta") ? Plcie.K : Plcie.M;
