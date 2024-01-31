@@ -35,6 +35,7 @@
         <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="34" Margin="31,170,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97" Click="bAdd_Click"/>
         <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="34" Margin="31,210,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97" Click="bRemove_Click"/>
         <Button x:Name="bChangeMember" Content="Zmień" HorizontalAlignment="Left" Height="34" Margin="31,249,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97" Click="bChangeMember_Click"/>
+        <Button x:Name="bSort" Content="Sortuj po PESELu" HorizontalAlignment="Left" Height="34" Margin="31,288,0,0" VerticalAlignment="Top" Width="112" Background="#FF6DCE97" Click="bSort_Click"/>
 
     </Grid>
 </Window>

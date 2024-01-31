@@ -55,54 +55,70 @@ namespace ZespolGUI
 
         private void bSave_Click(object sender, RoutedEventArgs e)
         {
-            if (tbPESEL.Text != "" && tbName.Text != "" && tbSurname.Text != "")
+            if (tbPESEL.Text == "" && tbName.Text == "" && tbSurname.Text == "")
             {
-                _osoba.Pesel = tbPESEL.Text;
-                if(_osoba.checkPESEL() == false)
+                DialogResult = false; return;
+            }
+            _osoba.Pesel = tbPESEL.Text;
+/*                if(_osoba.checkPESEL() == false)
+            {
+                try
                 {
-                    try
-                    {
-                        throw new Exception("Pesel się nie zgadza");
-                    }
-                    catch (Exception ex)
-                    {
-                        var message = MessageBox.Show("Podaj prawidłowy numer PESEL", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    throw new Exception("Pesel się nie zgadza");
                 }
-                _osoba.Imie = tbName.Text;
-                _osoba.Nazwisko = tbSurname.Text;
-                _osoba.Plcie = (cbGender.Text == "Kobieta") ? Plcie.K : Plcie.M;
-                string[] fdate = { "yyyy-MM-dd", "yyyy/MM/dd", "MM/dd/yy", "dd-MMM-yy", "dd.MM.yyyy", "dd-MMM-yyyy"};
-                var result = DateTime.TryParseExact(tbDate.Text, fdate, null, DateTimeStyles.None, out DateTime
-                date);
-                if (result == true)
+                catch (Exception ex)
                 {
-                    _osoba.DataUrodzenia = date;
+                    var message = MessageBox.Show("Podaj prawidłowy numer PESEL", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else
-                {
-                    try {
-                        throw new Exception("Data się nie zgadza");
-                    }
-                    catch(Exception ex) { 
-                        var message = MessageBox.Show("Data się nie zgadza", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+            }*/
+            _osoba.Imie = tbName.Text;
+            _osoba.Nazwisko = tbSurname.Text;
+            _osoba.Plcie = (cbGender.Text == "Kobieta") ? Plcie.K : Plcie.M;
+            string[] fdate = { "yyyy-MM-dd", "yyyy/MM/dd", "MM/dd/yy", "dd-MMM-yy", "dd.MM.yyyy", "dd-MMM-yyyy"};
+            var result = DateTime.TryParseExact(tbDate.Text, fdate, null, DateTimeStyles.None, out DateTime
+            date);
+            if (result == true)
+            {
+                _osoba.DataUrodzenia = date;
+            }
+            else
+            {
+                try {
+                    throw new Exception("Data się nie zgadza");
                 }
-                if (_osoba is KierownikZespołu)
-                {
-                    ((KierownikZespołu)_osoba).doswiadczenie = int.Parse(tbChange.Text);
+                catch(Exception ex) { 
+                    var message = MessageBox.Show("Data się nie zgadza", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-                else if(_osoba is CzłonekZespołu)
+            }
+            if (_osoba is KierownikZespołu)
+            {
+                ((KierownikZespołu)_osoba).doswiadczenie = int.Parse(tbChange.Text);
+            }
+            else if(_osoba is CzłonekZespołu)
+            {
+                ((CzłonekZespołu)_osoba).funkcja = tbChange.Text;
+            }
+            if (_osoba.Wiek() < 18)
+            {
+                try
                 {
-                    ((CzłonekZespołu)_osoba).funkcja = tbChange.Text;
+                    throw new Exception("Nie możesz zatrudniać < 18 lat");
+                }
+                catch (Exception ex)
+                {
+                    var message = MessageBox.Show("Nie możesz zatrudniać nieletnich bo skarbówka przyjdzie", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
             }
             DialogResult = true;
+            return;
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+            return;
         }
     }
 }

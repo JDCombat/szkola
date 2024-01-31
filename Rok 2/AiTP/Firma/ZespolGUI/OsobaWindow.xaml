@@ -22,7 +22,7 @@
         <Label x:Name="lSurname" Content="Nazwisko" HorizontalAlignment="Left" Height="24" Margin="25,88,0,0" VerticalAlignment="Top" Width="61"/>
         <Label x:Name="lDate" Content="Data urodz." HorizontalAlignment="Left" Height="24" Margin="25,117,0,0" VerticalAlignment="Top" Width="75"/>
         <Label x:Name="lGender" Content="Płeć" HorizontalAlignment="Left" Height="24" Margin="25,146,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbPESEL" HorizontalAlignment="Left" Height="24" Margin="119,18,0,0" TextWrapping="Wrap" Text="PESEL" VerticalAlignment="Top" Width="230"/>
+        <TextBox x:Name="tbPESEL" HorizontalAlignment="Left" Height="24" Margin="119,18,0,0" TextWrapping="Wrap" Text="PESEL" VerticalAlignment="Top" Width="230" MaxLength="11"/>
         <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="24" Margin="119,59,0,0" TextWrapping="Wrap" Text="Imie" VerticalAlignment="Top" Width="230"/>
         <TextBox x:Name="tbSurname" HorizontalAlignment="Left" Height="24" Margin="119,88,0,0" TextWrapping="Wrap" Text="Nazwisko" VerticalAlignment="Top" Width="230"/>
         <TextBox x:Name="tbDate" HorizontalAlignment="Left" Height="24" Margin="119,117,0,0" TextWrapping="Wrap" Text="DataUrodzenia" VerticalAlignment="Top" Width="230"/>

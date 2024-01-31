@@ -10,7 +10,7 @@ public class CzłonekZespołu: Osoba, ICloneable, IComparable<CzłonekZespołu>
 
     public CzłonekZespołu()
     {
-        dataZapisu = DateTime.MinValue;
+        dataZapisu = DateTime.Now;
         funkcja = "";
     }
 

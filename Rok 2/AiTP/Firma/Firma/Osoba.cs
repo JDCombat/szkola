@@ -65,6 +65,7 @@ public abstract class Osoba: IEquatable<Osoba>
         Nazwisko = "";
         PESEL = "00000000000";
         dataUrodzenia = DateTime.MinValue;
+        plec = Plcie.M;
     }
 
     public Osoba(string _imie, string _nazwisko)

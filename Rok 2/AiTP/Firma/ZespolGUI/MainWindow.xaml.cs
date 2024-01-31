@@ -56,8 +56,8 @@ namespace ZespolGUI
         {
             CzłonekZespołu cz = new CzłonekZespołu();
             OsobaWindow okno = new OsobaWindow(cz);
-            var result = okno.ShowDialog();
-            if (result == true)
+            okno.ShowDialog();
+            if (okno.DialogResult == true)
             {
                 zespol.dodajCzłonka(cz);
                 lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
@@ -85,6 +85,7 @@ namespace ZespolGUI
                 string filename = dlg.FileName;
                 zespol.Nazwa = tbName.Text;
                 Zespół.ZapiszXML(filename, zespol);
+                changed = false;
             }
         }
         private void MenuOtworz_Click(object sender, RoutedEventArgs e)
@@ -154,6 +155,12 @@ namespace ZespolGUI
                 }
                 changed = true;
             }
+        }
+
+        private void bSort_Click(object sender, RoutedEventArgs e)
+        {
+            zespol.sortujPoPESEL();
+            lstMembers.ItemsSource = new ObservableCollection<CzłonekZespołu>(zespol.Członkowie);
         }
     }
 }
