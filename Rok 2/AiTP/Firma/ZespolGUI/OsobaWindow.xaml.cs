@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Firma;
 using System.Globalization;
 using System.Linq.Expressions;
 
@@ -55,7 +54,7 @@ namespace ZespolGUI
 
         private void bSave_Click(object sender, RoutedEventArgs e)
         {
-            if (tbPESEL.Text == "" && tbName.Text == "" && tbSurname.Text == "")
+            if (tbPESEL.Text == "00000000000" && tbName.Text == "" && tbSurname.Text == "")
             {
                 DialogResult = false; return;
             }
@@ -111,6 +110,7 @@ namespace ZespolGUI
                     return;
                 }
             }
+            _osoba.format();
             DialogResult = true;
             return;
         }
