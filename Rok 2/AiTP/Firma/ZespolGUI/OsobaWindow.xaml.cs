@@ -30,23 +30,18 @@ namespace ZespolGUI
         public OsobaWindow(Osoba osoba) : this()
         {
             _osoba = osoba;
+            tbPESEL.Text = osoba.Pesel;
+            tbName.Text = osoba.Imie;
+            tbSurname.Text = osoba.Nazwisko;
+            tbDate.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
+            cbGender.Text = ((osoba.Plec) == Plcie.K) ? "Kobieta" : "Mężczyzna";
             if (_osoba is KierownikZespołu)
             {
-                tbPESEL.Text = osoba.Pesel;
-                tbName.Text = osoba.Imie;
-                tbSurname.Text = osoba.Nazwisko;
-                tbDate.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
-                cbGender.Text = ((osoba.Plec) == Plcie.K) ? "Kobieta" : "Mężczyzna";
                 lChange.Content = "Doświadczenie";
                 tbChange.Text = ((KierownikZespołu)osoba).doswiadczenie.ToString();
             }
             if (_osoba is CzłonekZespołu)
             {
-                tbPESEL.Text = osoba.Pesel;
-                tbName.Text = osoba.Imie;
-                tbSurname.Text = osoba.Nazwisko;
-                tbDate.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
-                cbGender.Text = ((osoba.Plec) == Plcie.K) ? "Kobieta" : "Mężczyzna";
                 lChange.Content = "Funkcja";
                 tbChange.Text = ((CzłonekZespołu)osoba).funkcja;
             }
